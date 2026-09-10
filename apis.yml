@@ -1,0 +1,63 @@
+name: 한국주식데이터 (aikstockdata)
+description: >-
+  An automated Korean equities open-data publisher. Each trading day it compiles DART filings and T+1 (previous-session)
+  closing prices for KOSPI/KOSDAQ/KONEX names and re-publishes them as machine-readable JSON/CSV files, refreshed once
+  per trading day at 18:10 KST. Free, keyless, and unauthenticated, with a REST/static-file API (OpenAPI 3.1), a hosted
+  MCP server, and an llms.txt.
+url: https://raw.githubusercontent.com/api-evangelist/aikstockdata/refs/heads/main/apis.yml
+created: '2026-09-10'
+modified: '2026-09-10'
+specificationVersion: '0.21'
+tags:
+  - korea
+  - stock-market
+  - financial-data
+  - open-data
+  - dart
+  - kospi
+  - kosdaq
+  - konex
+  - filings
+  - equities
+  - mcp
+  - llms-txt
+  - openapi
+apis:
+  - name: 한국주식데이터 공개 데이터 API
+    description: >-
+      A set of ~37 static JSON/CSV endpoints under /data/public/ covering daily market digest, T+1 quotes, disclosures,
+      rankings, screening, earnings, per-stock data and history, plus dated archives. Documented via OpenAPI 3.1 with no
+      authentication.
+    humanURL: https://aikstockdata.com/ai
+    baseURL: https://aikstockdata.com/data/public
+    tags:
+      - korea
+      - stock-market
+      - financial-data
+      - open-data
+      - dart
+      - kospi
+      - kosdaq
+      - konex
+      - filings
+      - equities
+      - mcp
+      - llms-txt
+      - openapi
+    properties:
+      - type: OpenAPI
+        url: https://aikstockdata.com/openapi.json
+      - type: Documentation
+        url: https://aikstockdata.com/ai
+      - type: LLMsTxt
+        url: https://aikstockdata.com/llms.txt
+      - type: MCPServer
+        url: https://mcp.aikstockdata.com/mcp
+maintainers:
+  - FN: na77tech-creator
+    url: https://github.com/na77tech-creator/aikstockdata
+generated:
+  by: apis.io/add
+  model: claude-opus-4-8
+  confidence: 97
+  at: '2026-09-10T00:56:24.696Z'
