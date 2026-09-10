@@ -1,0 +1,617 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://aikstockdata.com/data/public/schemas/rankings.schema.json",
+ "title": "rankings (/data/public/rankings.json)",
+ "description": "기계적 계산이며 종목 추천이 아닙니다. null 은 '미제공'이며 0 과 다릅니다.",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "name",
+  "generated_kst",
+  "source",
+  "license",
+  "citation",
+  "formula_version",
+  "growth_top8"
+ ],
+ "properties": {
+  "$schema": {
+   "type": "string",
+   "description": "이 파일을 설명하는 JSON Schema 주소"
+  },
+  "schema_version": {
+   "type": "string"
+  },
+  "name": {
+   "type": "string"
+  },
+  "as_of": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 파일의 기준일. ★형식이 파일마다 다릅니다(20260810 · 2026.08.11 · 2026-08-11 세 가지가 실재). 기계로 읽을 때는 as_of_iso 를 쓰세요."
+  },
+  "as_of_iso": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "as_of 를 YYYY-MM-DD 로 정규화한 값. 형식이 하나뿐이라 파싱에 이것만 쓰면 됩니다. 원본 as_of 는 하위호환을 위해 그대로 둡니다. 날짜를 못 읽으면 null(추측하지 않음)."
+  },
+  "generated_kst": {
+   "type": "string"
+  },
+  "snapshot_id": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 발행 배치 식별자. 인용할 때 이 값을 함께 적으세요 — latest 는 매 거래일 덮어쓰입니다."
+  },
+  "limitations": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "이 데이터셋으로 **무엇을 할 수 없는가**. 개별 파일의 note 필드에 흩어져 있던 것을 한 자리에 모은 것이며 새 사실이 아닙니다(원문이 더 자세합니다). 메타를 아직 안 쓴 파일에는 이 키가 없습니다 — '한계가 없다'는 뜻이 아니라 '아직 안 적었다'는 뜻입니다."
+  },
+  "code_rev": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 파일을 만든 코드의 git 커밋(짧은 SHA). generated_kst 는 데이터 시각, 이것은 코드 버전."
+  },
+  "source": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "집계 파일은 한 줄 문자열 · 종목 파일은 원천별 객체",
+   "properties": {
+    "quote": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "provider": {
+       "type": "string"
+      },
+      "dataset": {
+       "type": "string"
+      },
+      "note": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    },
+    "financials_disclosures": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "provider": {
+       "type": "string"
+      },
+      "dataset": {
+       "type": "string"
+      },
+      "note": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "license": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "집계 파일은 전문 문자열 · 종목 파일은 {name, url} 객체",
+   "properties": {
+    "name": {
+     "type": "string"
+    },
+    "url": {
+     "type": "string"
+    }
+   }
+  },
+  "citation": {
+   "type": "string"
+  },
+  "disclaimer": {
+   "type": "string"
+  },
+  "@type": {
+   "type": "string",
+   "description": "schema.org 표지(Dataset). 검색엔진과 AI 가 이 파일을 데이터셋으로 인식하게 합니다."
+  },
+  "description": {
+   "type": "string",
+   "description": "이 파일이 무엇인지 한 문단. 사람이 읽는 설명이며 데이터 값이 아닙니다."
+  },
+  "notes": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "이 파일을 쓸 때 틀리기 쉬운 지점에 대한 주의. 집계 전에 읽으세요."
+  },
+  "generated_at": {
+   "type": "string",
+   "description": "생성 시각(ISO 8601·KST). generated_kst 와 같은 시각의 다른 표기입니다."
+  },
+  "generated": {
+   "type": "string",
+   "description": "생성 시각(사람용 표기). generated_kst·generated_at 과 같은 시각입니다 — 한 파일에 세 표기가 함께 있는 것은 구 소비자 호환 때문입니다."
+  },
+  "formula_version": {
+   "type": "string"
+  },
+  "growth_universe_n": {
+   "type": "integer"
+  },
+  "eligibility": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "description": "유니버스에서 어떤 규칙으로 몇 개씩 걸러 냈는지의 단계별 기록",
+   "properties": {
+    "source": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "universe_n": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "after_class_n": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "after_status_n": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "after_sector_rule_n": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "type_status_narrowing_applied": {
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "rules": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "step": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "n": {
+        "type": [
+         "integer",
+         "null"
+        ]
+       },
+       "rule": {
+        "type": [
+         "string",
+         "null"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "key_aliases": {
+   "type": "object",
+   "description": "한글·'%' 키 ↔ 정규 영문 키 대응표",
+   "properties": {
+    "why": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "canonical": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "unit_note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "removal_policy": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "deprecated_but_kept": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "growth_top8": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "code": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "name_ko": {
+      "type": "string"
+     },
+     "score": {
+      "type": "number"
+     },
+     "opm_pct": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "op_income_yoy_pct": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "revenue_yoy_pct": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "opm_delta_pp": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "op_income_annualized_krw": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": "원(KRW). 옛 키 연환산영업이익_억 은 억원"
+     },
+     "status": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "basis": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "quarter_label": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "financial_period": {
+      "type": [
+       "string",
+       "null"
+      ]
+     }
+    }
+   }
+  },
+  "quiet_top": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "code": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "name_ko": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "quiet": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "basis": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "status": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "flags": {
+      "type": [
+       "array",
+       "null"
+      ]
+     },
+     "growth_percentile": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "low_turnover_percentile": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "muted_reaction_percentile": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "revenue_yoy_pct": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "op_income_yoy_pct": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "op_income_annualized_krw": {
+      "type": [
+       "number",
+       "null"
+      ]
+     }
+    }
+   }
+  },
+  "hi52": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "properties": {
+    "high": {
+     "type": "array"
+    },
+    "low": {
+     "type": "array"
+    },
+    "n_high": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "n_low": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "list_limit": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "high_truncated": {
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "low_truncated": {
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "window_days": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    }
+   }
+  },
+  "movers": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "properties": {
+    "up": {
+     "type": "array"
+    },
+    "down": {
+     "type": "array"
+    }
+   }
+  },
+  "breadth": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "properties": {
+    "up": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "down": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "flat": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "ratio": {
+     "type": [
+      "number",
+      "null"
+     ]
+    }
+   }
+  },
+  "fin_basis": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "description": "이 순위를 계산한 재무가 **어느 기수의 것인가**. ★성장 TOP8·조용한 실적주는 시세를 하나도 쓰지 않아, 새 정기보고서가 들어오기 전까지 순위가 매일 같은 것이 고장이 아니라 정상입니다.",
+   "properties": {
+    "latest_expected": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "제출 기한 달력상 지금 있을 법한 최신 기수(예: 2026Q2)"
+    },
+    "n_at_latest": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "description": "그 기수를 실제로 보유한 종목 수. n_with_financials 와 벌어져 있으면 적재가 아직 안 돈 것이고, 순위는 그만큼 과거를 말합니다"
+    },
+    "n_with_financials": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "description": "기수를 불문하고 재무를 보유한 종목 수"
+    },
+    "periods": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": {
+      "type": "integer"
+     },
+     "description": "기수별 보유 종목 수. 키가 기수 이름이라 열거하지 않습니다"
+    },
+    "store_updated_max": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "재무 스토어에 마지막으로 적재한 날"
+    },
+    "refreshed_by": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "이 연료를 채우는 도구. 파이프라인 스텝이 아니라 따로 돌립니다"
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "price_basDt": {
+   "type": "string",
+   "pattern": "^[0-9]{8}$",
+   "description": "이 순위에 쓴 시세 기준일(YYYYMMDD) — 재무 기준일과 다릅니다"
+  },
+  "turnaround_n": {
+   "type": "integer",
+   "description": "흑자전환 종목 수(유니버스 전체 누적이며 그날 신규 건수가 아닙니다)"
+  },
+  "earnings_board_url": {
+   "type": "string",
+   "description": "어닝 스코어보드 원본 위치"
+  },
+  "earnings_board_note": {
+   "type": "string",
+   "description": "스코어보드를 이 파일에서 뺀 이유(AI 도구가 큰 파일을 자르는 문제)"
+  },
+  "설명": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "string"
+   },
+   "description": "각 순위의 산식을 파일 스스로 담은 것 — 이 스키마를 받지 않아도 무엇을 계산했는지 알 수 있습니다. 키가 순위 이름이라 열거하지 않습니다"
+  }
+ }
+}

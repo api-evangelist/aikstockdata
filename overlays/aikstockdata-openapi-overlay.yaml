@@ -1,0 +1,43 @@
+# generated: '2026-09-10'
+# method: generated
+# source: openapi/aikstockdata-openapi.json (OpenAPI Overlay 1.0.0 of our enhancements; does not mutate the original)
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — 한국주식데이터 공개 데이터 API
+  version: '2026-09-10'
+extends: https://aikstockdata.com/openapi.json
+actions:
+- target: $.info
+  description: Note upstream provenance and cadence.
+  update:
+    x-source: 금융감독원 DART · 금융위원회 공공데이터포털
+    x-refresh: once per trading day 18:10 KST
+    x-quote-basis: T+1 confirmed close (not real-time)
+- target: $.paths['/data/public/today.json'].get
+  description: Add operationId (spec omits operationIds).
+  update:
+    operationId: getToday
+- target: $.paths['/data/public/s/{code}.json'].get
+  description: Add operationId.
+  update:
+    operationId: getStock
+- target: $.paths['/data/public/s/{code}_history.json'].get
+  description: Add operationId.
+  update:
+    operationId: getStockHistory
+- target: $.paths['/data/public/disclosures.json'].get
+  description: Add operationId.
+  update:
+    operationId: getDisclosures
+- target: $.paths['/data/public/earnings.json'].get
+  description: Add operationId.
+  update:
+    operationId: getEarnings
+- target: $.paths['/data/public/rankings.json'].get
+  description: Add operationId.
+  update:
+    operationId: getRankings
+- target: $.paths['/data/public/screen.json'].get
+  description: Add operationId.
+  update:
+    operationId: getScreen

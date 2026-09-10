@@ -1,0 +1,499 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://aikstockdata.com/data/public/schemas/disclosures.schema.json",
+ "title": "disclosure briefing (/data/public/disclosures.json)",
+ "description": "as_of 는 시세가 아니라 수록된 마지막 공시 접수일입니다. null 은 '미제공'이며 0 과 다릅니다.",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "name",
+  "generated_kst",
+  "source",
+  "license",
+  "citation",
+  "events"
+ ],
+ "properties": {
+  "$schema": {
+   "type": "string",
+   "description": "이 파일을 설명하는 JSON Schema 주소"
+  },
+  "schema_version": {
+   "type": "string"
+  },
+  "name": {
+   "type": "string"
+  },
+  "as_of": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 파일의 기준일. ★형식이 파일마다 다릅니다(20260810 · 2026.08.11 · 2026-08-11 세 가지가 실재). 기계로 읽을 때는 as_of_iso 를 쓰세요."
+  },
+  "as_of_iso": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "as_of 를 YYYY-MM-DD 로 정규화한 값. 형식이 하나뿐이라 파싱에 이것만 쓰면 됩니다. 원본 as_of 는 하위호환을 위해 그대로 둡니다. 날짜를 못 읽으면 null(추측하지 않음)."
+  },
+  "generated_kst": {
+   "type": "string"
+  },
+  "snapshot_id": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 발행 배치 식별자. 인용할 때 이 값을 함께 적으세요 — latest 는 매 거래일 덮어쓰입니다."
+  },
+  "limitations": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "이 데이터셋으로 **무엇을 할 수 없는가**. 개별 파일의 note 필드에 흩어져 있던 것을 한 자리에 모은 것이며 새 사실이 아닙니다(원문이 더 자세합니다). 메타를 아직 안 쓴 파일에는 이 키가 없습니다 — '한계가 없다'는 뜻이 아니라 '아직 안 적었다'는 뜻입니다."
+  },
+  "code_rev": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 파일을 만든 코드의 git 커밋(짧은 SHA). generated_kst 는 데이터 시각, 이것은 코드 버전."
+  },
+  "source": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "집계 파일은 한 줄 문자열 · 종목 파일은 원천별 객체",
+   "properties": {
+    "quote": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "provider": {
+       "type": "string"
+      },
+      "dataset": {
+       "type": "string"
+      },
+      "note": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    },
+    "financials_disclosures": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "provider": {
+       "type": "string"
+      },
+      "dataset": {
+       "type": "string"
+      },
+      "note": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "license": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "집계 파일은 전문 문자열 · 종목 파일은 {name, url} 객체",
+   "properties": {
+    "name": {
+     "type": "string"
+    },
+    "url": {
+     "type": "string"
+    }
+   }
+  },
+  "citation": {
+   "type": "string"
+  },
+  "disclaimer": {
+   "type": "string"
+  },
+  "@type": {
+   "type": "string",
+   "description": "schema.org 표지(Dataset). 검색엔진과 AI 가 이 파일을 데이터셋으로 인식하게 합니다."
+  },
+  "description": {
+   "type": "string",
+   "description": "이 파일이 무엇인지 한 문단. 사람이 읽는 설명이며 데이터 값이 아닙니다."
+  },
+  "notes": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "이 파일을 쓸 때 틀리기 쉬운 지점에 대한 주의. 집계 전에 읽으세요."
+  },
+  "generated_at": {
+   "type": "string",
+   "description": "생성 시각(ISO 8601·KST). generated_kst 와 같은 시각의 다른 표기입니다."
+  },
+  "generated": {
+   "type": "string",
+   "description": "생성 시각(사람용 표기). generated_kst·generated_at 과 같은 시각입니다 — 한 파일에 세 표기가 함께 있는 것은 구 소비자 호환 때문입니다."
+  },
+  "window_days": {
+   "type": "integer"
+  },
+  "수집범위": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "description": "분기별 수집이 끝까지 갔는지(branches 별 pages_read·rows·stopped)",
+   "properties": {
+    "complete": {
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "window": {
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": "string"
+     }
+    },
+    "branches": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "description": "DART 분기 키(A·B·I) → 그 분기 수집 결과",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "pages_read": {
+        "type": [
+         "integer",
+         "null"
+        ]
+       },
+       "total_page": {
+        "type": [
+         "integer",
+         "null"
+        ]
+       },
+       "rows": {
+        "type": [
+         "integer",
+         "null"
+        ]
+       },
+       "stopped": {
+        "type": [
+         "string",
+         "null"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "correction_overlap": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "properties": {
+    "corrections_n": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "is_correction_true_n": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "resolved_n": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "unresolved_generic_title_n": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "no_candidate_in_window_n": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "title_reused_groups_n": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "max_double_counted_krw": {
+     "type": [
+      "number",
+      "null"
+     ]
+    },
+    "how_to_dedupe": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "why_not_all": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "max_double_counted_note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "description": "정정본과 원본이 같은 창에 겹쳐 있는 정도, 그리고 그중 몇 건을 확실히 이었고 몇 건을 못 이었는지. 합산 전에 보세요"
+  },
+  "truncated": {
+   "type": "object",
+   "properties": {
+    "max_events": {
+     "type": "integer"
+    },
+    "dropped_count": {
+     "type": "integer"
+    },
+    "truncated_from_date": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "events": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "rcept_no": {
+      "type": "string"
+     },
+     "rcept_dt": {
+      "type": "string"
+     },
+     "code": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "market": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "label": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "title": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "url": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "score": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "amount": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "fact": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "meaning": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "receipt_time": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "HH:MM KST — 확보 못 하면 null"
+     },
+     "corrects_rcept_no": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "이 정정본이 대체하는 원본의 접수번호. 확증된 경우에만 실립니다"
+     },
+     "corrects_status": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "enum": [
+       "resolved_period_title",
+       "unresolved_generic_title",
+       "no_candidate_in_window",
+       null
+      ],
+      "description": "정정본만 갖는 값. 왜 이었는지/왜 못 이었는지"
+     },
+     "superseded_by": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "이 공시를 대체한 정정본의 접수번호. 합산에서 이 키가 있는 항목을 빼면 확정 중복만 빠집니다"
+     },
+     "session": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "enum": [
+       "pre_open",
+       "intraday",
+       "after_close",
+       "unknown",
+       null
+      ]
+     }
+    }
+   }
+  },
+  "collected_kst": {
+   "type": "string",
+   "description": "이 목록을 수집한 시각(KST). 접수일(as_of)보다 늦습니다"
+  },
+  "receipt_time_note": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "description": "★접수 시각과 세션을 왜 함께 봐야 하는지. 접수가 장 마감 후였다면 그날 종가 움직임은 통째로 공시보다 앞서므로 공시 반응이 아닙니다 — 날짜만으로는 이 구분이 안 됩니다.",
+   "properties": {
+    "필드": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "왜": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "source": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "coverage": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "session_rule": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "type_impact_note": {
+   "type": "string",
+   "description": "events[].type_impact 는 **그 공시 유형**의 과거 경로 집계이며 이 건의 예측이 아닙니다"
+  },
+  "점수기준": {
+   "type": "string",
+   "description": "score 산식 전문. 편집 선별이 아닌 공개 기준의 기계 산정입니다"
+  },
+  "필드안내": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "additionalProperties": {
+    "type": "string"
+   },
+   "description": "events[] 각 필드의 뜻을 파일 스스로 담은 정의표. 키가 필드 이름이라 열거하지 않습니다"
+  }
+ }
+}

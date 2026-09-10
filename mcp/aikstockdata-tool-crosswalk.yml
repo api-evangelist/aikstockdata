@@ -1,0 +1,154 @@
+generated: '2026-09-10'
+method: derived
+source: derived from mcp/aikstockdata-mcp-tools.json (probed tools/list) + openapi/aikstockdata-openapi.json
+note: OpenAPI declares no operationIds (static-file GET surface); REST operations are identified by path. Each MCP tool wraps one or two backing dataset files and applies filtering/slicing server-side.
+surfaces:
+  openapi: https://aikstockdata.com/openapi.json
+  mcp: https://mcp.aikstockdata.com/mcp
+  graphql: null
+  gated: false
+crosswalk:
+- tool: get_today
+  category: market
+  rest:
+  - /data/public/today.json
+  binding: static-file
+  confidence: high
+  note: Daily digest file backs the full get_today payload.
+- tool: get_stock
+  category: stock
+  rest:
+  - /data/public/s/{code}.json
+  binding: static-file
+  confidence: high
+  note: Per-stock detail file, code param maps to path {code}.
+- tool: get_history
+  category: stock
+  rest:
+  - /data/public/s/{code}_history.json
+  binding: static-file
+  confidence: high
+  note: Per-stock 1yr daily series; days param slices rows.
+- tool: get_rankings
+  category: rankings
+  rest:
+  - /data/public/rankings.json
+  binding: static-file
+  confidence: high
+  note: Rankings file; kind/limit select and trim the list.
+- tool: get_earnings
+  category: earnings
+  rest:
+  - /data/public/earnings.json
+  binding: static-file
+  confidence: medium
+  note: Earnings scoreboard; code narrows, limit trims. Preliminary rows also surface via s/{code}.json.
+- tool: get_earnings_calendar
+  category: earnings
+  rest:
+  - /data/public/earnings_calendar.json
+  binding: static-file
+  confidence: high
+  note: Earnings calendar; view/limit select summary vs full.
+- tool: get_disclosures
+  category: disclosures
+  rest:
+  - /data/public/disclosures.json
+  binding: static-file
+  confidence: high
+  note: Disclosure briefing; date/session/label/min_score/limit filter rows.
+- tool: get_disclosure_impact
+  category: disclosures
+  rest:
+  - /data/public/disclosure_impact.json
+  binding: static-file
+  confidence: high
+  note: Post-filing price-path file; label selects a disclosure type.
+- tool: list_stocks
+  category: screening
+  rest:
+  - /data/public/screen.json
+  binding: static-file
+  confidence: high
+  note: Screener source file; filter/cap/turnover/drawdown/sort/limit applied server-side.
+- tool: get_market_summary
+  category: market
+  rest:
+  - /data/public/today.json
+  binding: static-file
+  confidence: medium
+  note: Index & breadth subset of the daily digest.
+- tool: search_stock
+  category: search
+  rest:
+  - /data/public/search_index.json
+  binding: static-file
+  confidence: high
+  note: Name/code search index; query matched against aliases/rows.
+- tool: get_data_urls
+  category: catalog
+  rest:
+  - /data/public/index.json
+  binding: static-file
+  confidence: high
+  note: Data catalog file listing every dataset URL.
+mcp_only: []
+rest_only:
+- operation: /data/public/dart_receipt_times.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/dart_receipt_times_min.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/disclosures.csv
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/disclosures_intraday.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/disclosures_intraday_min.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/earnings_calendar_summary.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/market_index_history.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/new_since_yesterday.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/press_owl_filings.csv
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/press_turnaround.csv
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/quotes.csv
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/quotes_en.csv
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/quotes_min.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/screen_top300.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/search_index_aliases.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/search_index_rows.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/quotes_top300.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/quotes_slim.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/quotes.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/disclosures_top100.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/earnings_recent60.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/disclosure_impact_summary.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/search_index_min.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/daily/today_{date}.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/notices.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+- operation: /data/public/excluded.json
+  reason: No dedicated MCP tool; reachable as raw dataset via get_data_urls.
+coverage:
+  tools: 12
+  tools_bound: 12
+  rest_paths: 37
+  rest_paths_bound: 11
+  rest_only: 26

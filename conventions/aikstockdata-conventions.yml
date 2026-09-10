@@ -1,0 +1,29 @@
+generated: '2026-09-10'
+method: derived
+source: openapi/aikstockdata-openapi.json + https://aikstockdata.com/ai + data catalog index.json
+auth_style: none (public, keyless)
+idempotency:
+  coverage: na
+  note: 'Read-only API: every operation is an HTTP GET of a static JSON/CSV file. No mutating surface, so replay protection is not applicable.'
+reversibility:
+  grade: na
+  note: No write surface — nothing to reverse. Data is a once-per-trading-day published snapshot, not a mutable resource.
+dry_run:
+  supported: na
+  note: Read-only; no state-changing calls to rehearse.
+pagination:
+  style: none
+  note: Datasets are whole-file. Size is managed by dedicated slim/min/top-N variants (quotes_slim, quotes_min, quotes_top300, screen_top300, disclosures_top100, earnings_recent60) rather than page/cursor params. index.json.file_bytes advertises each file size so clients pick a variant under their truncation threshold.
+field_expansion:
+  supported: false
+metadata:
+  note: 'Every dataset carries envelope metadata: as_of/as_of_iso, snapshot_id, code_rev, source, license, disclaimer, and $schema back-reference to its JSON Schema.'
+versioning:
+  style: datestamp
+  note: OpenAPI info.version is the publish date (e.g. 20260910); transform_version (p2.2026-07-17) tracks the pipeline schema. No URL versioning.
+error_envelope:
+  note: Missing code/date returns HTTP 404 with a plain description. Responses are not RFC 9457 problem+json.
+rate_limit_signal:
+  note: No rate-limit headers; provider states no quota, fair-use only. See rate-limits/aikstockdata-rate-limits.yml.
+caching:
+  note: CDN-served static files; data refreshes once per trading day at 18:10 KST.

@@ -1,0 +1,177 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://aikstockdata.com/data/public/schemas/screen.schema.json",
+ "title": "screening rows (/data/public/screen.json)",
+ "description": "null 은 '미제공'이며 0 과 다릅니다.",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "name",
+  "generated_kst",
+  "source",
+  "license",
+  "citation",
+  "fields",
+  "rows"
+ ],
+ "properties": {
+  "$schema": {
+   "type": "string",
+   "description": "이 파일을 설명하는 JSON Schema 주소"
+  },
+  "schema_version": {
+   "type": "string"
+  },
+  "name": {
+   "type": "string"
+  },
+  "as_of": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 파일의 기준일. ★형식이 파일마다 다릅니다(20260810 · 2026.08.11 · 2026-08-11 세 가지가 실재). 기계로 읽을 때는 as_of_iso 를 쓰세요."
+  },
+  "as_of_iso": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "as_of 를 YYYY-MM-DD 로 정규화한 값. 형식이 하나뿐이라 파싱에 이것만 쓰면 됩니다. 원본 as_of 는 하위호환을 위해 그대로 둡니다. 날짜를 못 읽으면 null(추측하지 않음)."
+  },
+  "generated_kst": {
+   "type": "string"
+  },
+  "snapshot_id": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 발행 배치 식별자. 인용할 때 이 값을 함께 적으세요 — latest 는 매 거래일 덮어쓰입니다."
+  },
+  "limitations": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "이 데이터셋으로 **무엇을 할 수 없는가**. 개별 파일의 note 필드에 흩어져 있던 것을 한 자리에 모은 것이며 새 사실이 아닙니다(원문이 더 자세합니다). 메타를 아직 안 쓴 파일에는 이 키가 없습니다 — '한계가 없다'는 뜻이 아니라 '아직 안 적었다'는 뜻입니다."
+  },
+  "code_rev": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 파일을 만든 코드의 git 커밋(짧은 SHA). generated_kst 는 데이터 시각, 이것은 코드 버전."
+  },
+  "source": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "집계 파일은 한 줄 문자열 · 종목 파일은 원천별 객체",
+   "properties": {
+    "quote": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "provider": {
+       "type": "string"
+      },
+      "dataset": {
+       "type": "string"
+      },
+      "note": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    },
+    "financials_disclosures": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "provider": {
+       "type": "string"
+      },
+      "dataset": {
+       "type": "string"
+      },
+      "note": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "license": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "집계 파일은 전문 문자열 · 종목 파일은 {name, url} 객체",
+   "properties": {
+    "name": {
+     "type": "string"
+    },
+    "url": {
+     "type": "string"
+    }
+   }
+  },
+  "citation": {
+   "type": "string"
+  },
+  "disclaimer": {
+   "type": "string"
+  },
+  "@type": {
+   "type": "string",
+   "description": "schema.org 표지(Dataset). 검색엔진과 AI 가 이 파일을 데이터셋으로 인식하게 합니다."
+  },
+  "description": {
+   "type": "string",
+   "description": "이 파일이 무엇인지 한 문단. 사람이 읽는 설명이며 데이터 값이 아닙니다."
+  },
+  "notes": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "이 파일을 쓸 때 틀리기 쉬운 지점에 대한 주의. 집계 전에 읽으세요."
+  },
+  "generated_at": {
+   "type": "string",
+   "description": "생성 시각(ISO 8601·KST). generated_kst 와 같은 시각의 다른 표기입니다."
+  },
+  "generated": {
+   "type": "string",
+   "description": "생성 시각(사람용 표기). generated_kst·generated_at 과 같은 시각입니다 — 한 파일에 세 표기가 함께 있는 것은 구 소비자 호환 때문입니다."
+  },
+  "count": {
+   "type": "integer"
+  },
+  "fields": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "rows 각 행의 열 이름 — 행이 배열이라 이 순서가 계약입니다"
+  },
+  "rows": {
+   "type": "array",
+   "items": {
+    "type": "array"
+   },
+   "description": "키 이름을 전 종목 행에 반복하면 파일이 두 배가 되어 배열로 냅니다"
+  }
+ }
+}

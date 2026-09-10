@@ -1,0 +1,7 @@
+generated: '2026-09-10'
+method: searched
+source: https://aikstockdata.com/ai + OpenAPI description
+limit_count: 0
+headers: []
+note: Provider states no request quota ("요청 쿼터 없음") and asks only for fair use ("공정 이용 범위에서 써 주세요"). No RateLimit-*/Retry-After headers observed; CDN-served static files. Data changes at most once per trading day (18:10 KST), so repeated polling within a day returns identical values.
+limits: []

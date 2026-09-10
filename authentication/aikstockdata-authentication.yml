@@ -1,0 +1,8 @@
+generated: '2026-09-10'
+method: searched
+source: https://aikstockdata.com/ai + openapi/aikstockdata-openapi.json (no securitySchemes)
+summary: No authentication. Fully public, keyless, unauthenticated REST/static-file API with CORS fully open. The OpenAPI declares no securitySchemes and no security requirement; the provider states no signup and no API key issuance.
+schemes: []
+auth_required: false
+cors: 'open (Access-Control-Allow-Origin: *)'
+notes: 'MCP server at https://mcp.aikstockdata.com/mcp is also unauthenticated (authentication: none) with no session header required.'

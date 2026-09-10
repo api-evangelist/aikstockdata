@@ -1,0 +1,87 @@
+generated: '2026-09-10'
+method: derived
+source: json-schema/aikstockdata-*.schema.json (draft 2020-12) + openapi/aikstockdata-openapi.json
+join_key:
+  field: code
+  format: 6-char [0-9A-Z] KRX ticker (e.g. 005930)
+  note: The stock code is the primary identifier joining every dataset. search_index / aliases resolve a name to a code; per-stock files are addressed by code.
+entities:
+- name: stock
+  file: /data/public/s/{code}.json
+  id: code
+  description: 'One listed company: T+1 confirmed close, change, market cap, latest (incl. preliminary) quarterly earnings, ranking signals.'
+- name: quote
+  file: /data/public/quotes.json (+ slim/min/top300 variants, CSV)
+  id: code
+  description: T+1 confirmed close row per listed name across KOSPI/KOSDAQ/KONEX.
+- name: history
+  file: /data/public/s/{code}_history.json
+  id: code
+  description: Up to ~250 trading days of [date, close, volume] rows for one stock.
+- name: disclosure
+  file: /data/public/disclosures.json (+ top100, intraday, CSV)
+  id: code
+  description: DART filing with receipt time (HH:MM), session, plain-language summary and importance score.
+- name: earnings
+  file: /data/public/earnings.json (+ recent60)
+  id: code
+  description: Quarterly earnings scoreboard incl. preliminary (잠정) filings.
+- name: earnings_calendar
+  file: /data/public/earnings_calendar.json
+  id: code
+  description: Who has/has not filed this quarter, deadlines, and new-filing diff.
+- name: ranking
+  file: /data/public/rankings.json
+  id: code
+  description: Growth TOP8, quiet-earners, 52-week high/low, movers.
+- name: screen
+  file: /data/public/screen.json (+ top300)
+  id: code
+  description: Per-stock screening metrics (turnaround, cap/operating-profit multiple, drawdown, turnover percentile).
+- name: disclosure_impact
+  file: /data/public/disclosure_impact.json
+  id: label
+  description: Median market-adjusted price path after each disclosure type.
+- name: today
+  file: /data/public/today.json
+  id: as_of
+  description: 'Daily market digest: index levels, breadth, top disclosures, growth top-3, movers.'
+relationships:
+- from: stock
+  to: history
+  type: has_many
+  via: code
+- from: stock
+  to: disclosure
+  type: has_many
+  via: code
+- from: stock
+  to: earnings
+  type: has_many
+  via: code
+- from: stock
+  to: quote
+  type: has_one
+  via: code
+- from: stock
+  to: ranking
+  type: belongs_to
+  via: code
+- from: stock
+  to: screen
+  type: has_one
+  via: code
+- from: disclosure
+  to: disclosure_impact
+  type: belongs_to
+  via: label (disclosure type)
+- from: today
+  to: disclosure
+  type: has_many
+  via: top_disclosures
+- from: today
+  to: ranking
+  type: has_many
+  via: growth_top3
+envelope:
+  note: 'Every dataset is wrapped in a common metadata envelope: schema_version, as_of/as_of_iso, generated_kst, snapshot_id, source, license, limitations, and a $schema back-reference to its JSON Schema.'

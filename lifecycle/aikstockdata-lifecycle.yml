@@ -1,0 +1,21 @@
+generated: '2026-09-10'
+method: searched
+source: https://aikstockdata.com/status + /notices + openapi/aikstockdata-openapi.json + data catalog index.json
+versioning:
+  scheme: datestamp
+  current: '20260910'
+  note: OpenAPI info.version is the publish date; pipeline transform_version p2.2026-07-17.
+release_cadence: Once per trading day, refreshed 18:10 KST.
+status_page:
+  url: https://aikstockdata.com/status
+  note: Public service-status page; freshness/pipeline health also machine-readable in index.json (freshness, pipeline.consecutive_failure_days, recent_failure_dates).
+change_log:
+  url: https://aikstockdata.com/notices
+  machine_readable: https://aikstockdata.com/data/public/notices.json
+  note: 정정·공지 로그 — corrections, pipeline exceptions and validation-gate results. new_since_yesterday.json diffs the latest run.
+deprecation_policy:
+  documented: false
+  note: No formal deprecation/sunset policy published; no deprecated operations declared in the OpenAPI.
+sla:
+  documented: false
+deprecated_operations: []

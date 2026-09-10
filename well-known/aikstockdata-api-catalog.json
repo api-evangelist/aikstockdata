@@ -1,0 +1,39 @@
+{
+ "linkset": [
+  {
+   "anchor": "https://aikstockdata.com/data/public",
+   "service-desc": [
+    {
+     "href": "https://aikstockdata.com/openapi.json",
+     "type": "application/json"
+    }
+   ],
+   "service-doc": [
+    {
+     "href": "https://aikstockdata.com/ai",
+     "type": "text/html"
+    },
+    {
+     "href": "https://aikstockdata.com/llms.txt",
+     "type": "text/plain"
+    }
+   ],
+   "service-meta": [
+    {
+     "href": "https://aikstockdata.com/apis.json",
+     "type": "application/json"
+    },
+    {
+     "href": "https://aikstockdata.com/data/public/index.json",
+     "type": "application/json"
+    }
+   ],
+   "license": [
+    {
+     "href": "https://aikstockdata.com/licenses/aiksd-public-1.0.txt",
+     "type": "text/plain"
+    }
+   ]
+  }
+ ]
+}

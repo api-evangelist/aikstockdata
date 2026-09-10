@@ -1,0 +1,45 @@
+generated: '2026-09-10'
+method: probed
+source: live /.well-known/* probes with browser User-Agent
+hosts:
+- host: aikstockdata.com
+  documents:
+  - path: /.well-known/api-catalog
+    status: 200
+    file: aikstockdata-api-catalog.json
+  - path: /.well-known/mcp.json
+    status: 200
+    file: aikstockdata-mcp.json
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: mcp.aikstockdata.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+note: 'Served: /.well-known/api-catalog (RFC 9727 linkset pointing at openapi.json, /ai docs, llms.txt, apis.json, data catalog) and a non-standard /.well-known/mcp.json (self-described as a convention address, not a standard; canonical tool list is tools/list at the MCP endpoint). No security.txt, OAuth metadata, or agent card. Auth is none, so the OAuth 404s are expected.'

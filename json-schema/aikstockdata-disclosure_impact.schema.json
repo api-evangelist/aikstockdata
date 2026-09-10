@@ -1,0 +1,566 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://aikstockdata.com/data/public/schemas/disclosure_impact.schema.json",
+ "title": "post-filing price paths (/data/public/disclosure_impact.json)",
+ "description": "표본 20건 미만은 산출하지 않습니다. 인과·예측이 아니라 과거 기록입니다. null 은 '미제공'이며 0 과 다릅니다.",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "name",
+  "generated_kst",
+  "source",
+  "license",
+  "citation",
+  "n_events_used",
+  "summary"
+ ],
+ "properties": {
+  "$schema": {
+   "type": "string",
+   "description": "이 파일을 설명하는 JSON Schema 주소"
+  },
+  "schema_version": {
+   "type": "string"
+  },
+  "name": {
+   "type": "string"
+  },
+  "as_of": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 파일의 기준일. ★형식이 파일마다 다릅니다(20260810 · 2026.08.11 · 2026-08-11 세 가지가 실재). 기계로 읽을 때는 as_of_iso 를 쓰세요."
+  },
+  "as_of_iso": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "as_of 를 YYYY-MM-DD 로 정규화한 값. 형식이 하나뿐이라 파싱에 이것만 쓰면 됩니다. 원본 as_of 는 하위호환을 위해 그대로 둡니다. 날짜를 못 읽으면 null(추측하지 않음)."
+  },
+  "generated_kst": {
+   "type": "string"
+  },
+  "snapshot_id": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 발행 배치 식별자. 인용할 때 이 값을 함께 적으세요 — latest 는 매 거래일 덮어쓰입니다."
+  },
+  "limitations": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "이 데이터셋으로 **무엇을 할 수 없는가**. 개별 파일의 note 필드에 흩어져 있던 것을 한 자리에 모은 것이며 새 사실이 아닙니다(원문이 더 자세합니다). 메타를 아직 안 쓴 파일에는 이 키가 없습니다 — '한계가 없다'는 뜻이 아니라 '아직 안 적었다'는 뜻입니다."
+  },
+  "code_rev": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "이 파일을 만든 코드의 git 커밋(짧은 SHA). generated_kst 는 데이터 시각, 이것은 코드 버전."
+  },
+  "source": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "집계 파일은 한 줄 문자열 · 종목 파일은 원천별 객체",
+   "properties": {
+    "quote": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "provider": {
+       "type": "string"
+      },
+      "dataset": {
+       "type": "string"
+      },
+      "note": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    },
+    "financials_disclosures": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "provider": {
+       "type": "string"
+      },
+      "dataset": {
+       "type": "string"
+      },
+      "note": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "license": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "집계 파일은 전문 문자열 · 종목 파일은 {name, url} 객체",
+   "properties": {
+    "name": {
+     "type": "string"
+    },
+    "url": {
+     "type": "string"
+    }
+   }
+  },
+  "citation": {
+   "type": "string"
+  },
+  "disclaimer": {
+   "type": "string"
+  },
+  "@type": {
+   "type": "string",
+   "description": "schema.org 표지(Dataset). 검색엔진과 AI 가 이 파일을 데이터셋으로 인식하게 합니다."
+  },
+  "description": {
+   "type": "string",
+   "description": "이 파일이 무엇인지 한 문단. 사람이 읽는 설명이며 데이터 값이 아닙니다."
+  },
+  "notes": {
+   "type": [
+    "string",
+    "object"
+   ],
+   "description": "이 파일을 쓸 때 틀리기 쉬운 지점에 대한 주의. 집계 전에 읽으세요."
+  },
+  "generated_at": {
+   "type": "string",
+   "description": "생성 시각(ISO 8601·KST). generated_kst 와 같은 시각의 다른 표기입니다."
+  },
+  "generated": {
+   "type": "string",
+   "description": "생성 시각(사람용 표기). generated_kst·generated_at 과 같은 시각입니다 — 한 파일에 세 표기가 함께 있는 것은 구 소비자 호환 때문입니다."
+  },
+  "n_events_used": {
+   "type": "integer"
+  },
+  "excluded_corrections": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "properties": {
+    "flagged": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "prefix_only": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "description": "표본에서 뺀 정정 공시 수. prefix_only 는 is_correction 플래그가 거짓인데 제목 접두로만 잡힌 건수입니다"
+  },
+  "by_session_note": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "by_yoy_direction_note": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "n_clusters": {
+   "type": "integer",
+   "description": "집계 단위 = 발행사×기준일×유형. 같은 날 같은 회사의 여러 공시는 한 번만 셉니다"
+  },
+  "method": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "properties": {
+    "baseline": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "horizons_trading_days": {
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": "number"
+     }
+    },
+    "horizon_keys": {
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": "string"
+     }
+    },
+    "h0": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "receipt_session": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": {
+      "type": "string"
+     }
+    },
+    "market_adjust": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "benchmark_model": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "interval": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "horizon_windows": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "statistic": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "min_sample": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "unit": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "withheld_types": {
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": "string"
+     }
+    },
+    "withheld_reason": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "excluded": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "summary": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "label": {
+      "type": "string"
+     },
+     "label_en": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "n_max": {
+      "type": "integer"
+     },
+     "receipt_sessions": {
+      "type": [
+       "object",
+       "null"
+      ]
+     },
+     "by_session": {
+      "type": [
+       "object",
+       "null"
+      ]
+     },
+     "by_yoy_direction": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "전년 동기 대비 영업이익 방향으로 나눈 집계. 컨센서스가 없으므로 '서프라이즈'가 아닙니다"
+     },
+     "h0": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "접수일 당일 — 장 마감 후 접수건이 섞여 공시 반응으로 식별되지 않습니다(진단용)"
+     },
+     "h1": {
+      "type": [
+       "object",
+       "null"
+      ]
+     },
+     "h5": {
+      "type": [
+       "object",
+       "null"
+      ]
+     },
+     "h20": {
+      "type": [
+       "object",
+       "null"
+      ]
+     }
+    }
+   }
+  },
+  "per_event": {
+   "type": "object",
+   "description": "키는 접수번호(rcept_no), 값은 그 공시 1건의 경로. 배열이 아닙니다 — 접수번호로 바로 집을 수 있게 객체로 냅니다.",
+   "additionalProperties": {
+    "type": "object",
+    "properties": {
+     "code": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "market": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "label": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "kind": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "base_date": {
+      "type": "string",
+      "description": "기준일 YYYYMMDD"
+     },
+     "base_close": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "h0": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "접수일 당일"
+     },
+     "h1": {
+      "type": [
+       "object",
+       "null"
+      ]
+     },
+     "h5": {
+      "type": [
+       "object",
+       "null"
+      ]
+     },
+     "h20": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "20거래일이 쌓인 건부터 채워집니다. 지금 발행 중인지는 파일 최상위의 h20_status 를 보세요 — 여기에 '전부 null' 이라고 적어 두면 채워지는 날 그 문장이 거짓이 됩니다"
+     },
+     "receipt_time": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "접수 시:분(KST). DART 공개 API 로는 얻을 수 없어 저희가 장중에 별도 수집합니다"
+     },
+     "receipt_session": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "pre_open · intraday · after_close. after_close 건의 h0 는 그날 움직임 전체가 공시 이전이라 반응으로 읽으면 안 됩니다"
+     },
+     "price_break": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "권리락·병합 등으로 주가 계열이 끊긴 건. 저희 종가는 수정주가가 아니므로 이 건의 수익률은 시장 반응이 아니라 가격 단절을 잽니다 — 집계에서 빼세요"
+     },
+     "cluster": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "발행사×기준일×유형 군집 키. 같은 날 같은 회사의 여러 공시를 한 번만 세기 위한 것입니다"
+     }
+    }
+   }
+  },
+  "per_event_fields": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "per_event 값 객체에 실제로 존재하는 필드 이름 전부. 손으로 적은 목록이 아니라 실물에서 세어 냅니다."
+  },
+  "per_event_key": {
+   "type": "string",
+   "description": "per_event 의 키가 무엇인지(접수번호)"
+  },
+  "horizon_windows": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "description": "h0·h1·h5·h20 각각이 실제로 몇 날짜에서 계산됐는지(from·to·n_dates). ★h20 이 null 이면 아직 20거래일이 쌓이지 않은 것이지 '영향이 없다'가 아닙니다.",
+   "additionalProperties": {
+    "type": [
+     "object",
+     "null"
+    ],
+    "properties": {
+     "from": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "to": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "n_dates": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     }
+    }
+   }
+  },
+  "h20_status": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "description": "h20 을 지금 발행하고 있는지와 그 근거(ready·표본을 채운 유형 수·h20 이 있는 개별 공시 수·계산 구간). h20 이 안 보이면 먼저 이 값을 보세요 — 없는 것과 아직 이른 것은 다릅니다.",
+   "properties": {
+    "ready": {
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "n_types_enough": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "n_types_any": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "n_events_with_h20": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "window": {
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,10 @@
+generated: '2026-09-10'
+method: generated
+source: mcp/aikstockdata-mcp-tools.json (probed) + openapi/aikstockdata-openapi.json
+skills:
+  - name: korean-stock-lookup
+    file: aikstockdata-stock-lookup.md
+    tools: [search_stock, get_stock, get_history]
+  - name: korean-market-digest-and-disclosures
+    file: aikstockdata-market-digest.md
+    tools: [get_today, get_market_summary, get_disclosures, get_disclosure_impact]

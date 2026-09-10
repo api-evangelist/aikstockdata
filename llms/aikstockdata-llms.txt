@@ -1,0 +1,96 @@
+# 한국주식데이터 (갱신 2026.09.10)
+
+> 매 거래일 기계가 KOSPI·KOSDAQ·KONEX 2,791종목의 공시(DART)와 T+1 종가(금융위 공공데이터)를
+> 정리해 발행하는 자동 분석 사이트입니다. 공개 데이터는 공공데이터 가공물로 출처 표기 후
+> 자유 이용(영리 포함)할 수 있습니다. 시세는 전 영업일 종가(실시간 아님)입니다.
+> 추천이 아닌 사실·신호이며, 투자 판단은 이용자 본인의 몫입니다.
+
+더 자세히: [엔드포인트 전체·필드 정의·산식·응답 규칙](https://aikstockdata.com/llms-full.txt) · [기계가독 카탈로그](https://aikstockdata.com/data/public/index.json) · [OpenAPI 3.1](https://aikstockdata.com/openapi.json)
+
+## MCP 서버 (AI 커넥터 — Claude·ChatGPT가 대화 중 직접 조회 · 무료·무인증)
+- 엔드포인트: https://mcp.aikstockdata.com/mcp
+- 도구 12개: get_today(오늘의 시장 요약 — 지수·등락 폭·주요 공시·성장 랭킹) · search_stock(종목 검색(한글명 부분일치)) · get_stock(종목 상세 — 시세·분기 실적·랭킹 신호·더 최신 잠정실적) · get_rankings(성장 TOP8·조용한 실적주) · get_market_summary(지수·등락 폭 전용) · list_stocks(★조건으로 종목 목록 — 흑자전환·52주 신고저·시총÷영업이익 배수 상한) · get_earnings(★잠정 실적 포함 — 정기보고서보다 2주 빠름) · get_history(★250거래일 일별 시세 + 고점 대비 낙폭·거래량 배수) · get_disclosure_impact(★공시 유형별 이후 주가 — 다른 데서 무료로 못 구함) · get_disclosures(★공시 목록 — 접수 시각(HH:MM)·장 구분까지) · get_earnings_calendar(★실적 캘린더 — 누가 냈고 누가 아직인가 + 마감 D-day + 신규 diff) · get_data_urls(공개 데이터 URL 카탈로그)
+- 등록(GUI): Claude·ChatGPT 설정의 '커스텀 커넥터'에 위 주소를 붙여넣기(인증 없음)
+- 등록(CLI): claude mcp add --transport http aikstockdata https://mcp.aikstockdata.com/mcp
+- 등록(설정 파일): { "mcpServers": { "aikstockdata": { "type": "http", "url": "https://mcp.aikstockdata.com/mcp" } } }
+- 전송 방식: Streamable HTTP · 인증 없음 · 세션 헤더 불필요 · CORS 전면 개방
+- 안내: https://aikstockdata.com/ai
+
+## AI용 공개 데이터 (JSON — 무료·키 불필요·출처 표기 후 자유 이용)
+- ★카탈로그(전 파일 목록·크기 bytes·신선도·아카이브 날짜 — 여기서 시작): https://aikstockdata.com/data/public/index.json
+- OpenAPI 3.1 명세(GPT Actions·Postman·SDK 생성용 — 전 엔드포인트·인증 없음): https://aikstockdata.com/openapi.json
+- JSON Schema(draft 2020-12, 9종 — 타입 검증·SDK 자동생성용): https://aikstockdata.com/data/public/schemas/{dataset}.schema.json (전체 목록은 index.json 의 schemas. 각 데이터 파일 안 $schema 로 역참조도 됩니다)
+- ★오늘의 시장 다이제스트(하루 요약 — 등락 폭·주요 공시·성장 랭킹·실적·집계 통계): https://aikstockdata.com/data/public/today.json
+- 시세(T+1 종가, 수록 대상 2,797 중 정상수집 2,791, 제외 6(해당 거래일 시세 미수신 — 거래정지·정리매매·신규상장 미반영·상장폐지·코드불일치 등)): https://aikstockdata.com/data/public/quotes.json
+- 시세 경량판(핵심 6필드 · 374KB · 잘림 문턱 초과 — 전 종목이 필요할 때): https://aikstockdata.com/data/public/quotes_slim.json
+  ★시세 최소판(106KB — 행 배열이라 잘림 문턱 아래. 이름은 search_index_min·rows 와 종목코드로 조인): https://aikstockdata.com/data/public/quotes_min.json
+- 시총 상위 300(내림차순 정렬 보장 — '시총 상위 N' 질문은 이 파일 우선): https://aikstockdata.com/data/public/quotes_top300.json
+- ★주요 공시 TOP100(중요도순·66KB — '오늘 중요한 공시' 질문은 이 파일): https://aikstockdata.com/data/public/disclosures_top100.json
+- 종목 인덱스 경량판(163KB · 잘림 문턱 초과 — 이름→코드. URL 은 파일 안 패턴으로 조립): https://aikstockdata.com/data/public/search_index_min.json
+  ★행 배열판(110KB — 전종목 전환 뒤에도 잘리지 않는 판. columns 선언 1회 + rows): https://aikstockdata.com/data/public/search_index_rows.json
+    한글 별칭(이름 검색용 — '네이버'로 NAVER 찾기): https://aikstockdata.com/data/public/search_index_aliases.json
+- 종목 인덱스 리터럴 URL판(476KB — URL 조립이 어려운 환경용): https://aikstockdata.com/data/public/search_index.json
+- 어닝 스코어보드(실적 공시 롤링 120일 — rankings 에서 분리): https://aikstockdata.com/data/public/earnings.json
+  ★소형판(시총 상위 80종목+최근 70건·압축 재무 포함 — AI 잘림 안전): https://aikstockdata.com/data/public/earnings_recent60.json
+- 날짜별 아카이브(최근 30영업일 — ★패턴마다 보유 날짜가 다르므로 index.json 의 daily_archive 에서 quotes_available_dates · disclosures_available_dates · today_available_dates 를 각각 확인할 것): https://aikstockdata.com/data/public/daily/quotes_YYYYMMDD.csv · daily/disclosures_YYYYMMDD.csv · daily/today_YYYYMMDD.json
+- 종목별 소형 JSON(한 종목만 — 영문 키 병기): https://aikstockdata.com/data/public/s/종목코드6자리.json (예: https://aikstockdata.com/data/public/s/005930.json)
+- 공시 브리핑(그날의 주요 공시 + 쉬운 말 풀이 + 중요도 점수 + 접수 시각 HH:MM·장 구분): https://aikstockdata.com/data/public/disclosures.json
+- 랭킹(성장 TOP8·조용한 실적주·52주 신고저·등락): https://aikstockdata.com/data/public/rankings.json
+- ★조건 검색 재료(개수 말고 목록이 필요할 때 — 흑자전환·시총/연환산영업이익 배수·52주 신고저·성장·조용한 실적주 소속): https://aikstockdata.com/data/public/screen.json
+- CSV 다운로드(엑셀·AI 겸용): https://aikstockdata.com/data/public/quotes.csv · https://aikstockdata.com/data/public/disclosures.csv
+- 통짜 내려받기(발행일 고정 스냅샷 — 매 거래일 갱신본은 위 주소들):
+  허깅페이스(JSON Lines): https://huggingface.co/datasets/aikstockdata/korea-equity-daily
+  캐글(CSV 4개 · 공시 접수 시각 HH:MM 열 포함): https://www.kaggle.com/datasets/aikstokdata/korean-equity-daily-prices-dart-filing-impact
+  (원천: 금융감독원 DART · 금융위원회 공공데이터포털 — 증권사(KIS) 원시 시세는 포함되지 않음)
+  (필드 영문명·정의는 각 JSON 안의 'field_definitions' 또는 '필드영문명' 참조)
+  ★큰 파일 주의: AI 도구는 대개 50~150KB 에서 응답을 자르고 잘린 JSON 은 파싱이 안 됩니다.
+   index.json 의 file_bytes 를 먼저 보고, 150KB 이상이면 위 ★소형판을 쓰세요.
+   한 종목만 필요하면 언제나 /data/public/s/{종목코드}.json 이 정답입니다.
+- ★종목별 가격 시계열(1년): https://aikstockdata.com/data/public/s/{종목코드}_history.json
+   "최근 3개월 추세"·"고점 대비 얼마 빠졌나"·"실적 발표 전후 주가" 질문은 이 파일 하나로
+   끝납니다(날짜별 CSV 를 여러 번 받을 필요 없음). 예: /data/public/s/005930_history.json
+   행은 [date, close, volume] 배열이고 columns 필드가 순서를 알려줍니다. 최대 250거래일.
+   휴장·무거래일은 행 자체가 없으니 날짜가 연속이라고 가정하지 마세요.
+
+## 페이지 (사람·AI 공용)
+- 홈: https://aikstockdata.com/
+- ★한국 시가총액 상위 100(종가·등락률·시총 한 표): https://aikstockdata.com/market-cap-top-100
+- ★전체 종목 목록(발행 중인 전 종목 개별 페이지): https://aikstockdata.com/stocks
+- 영업이익 증가율 상위(전년 동기 대비 — 기저 효과 제외 기준 명시): https://aikstockdata.com/operating-profit-growth-top
+- 매출 증가율 상위(전년 동기 대비): https://aikstockdata.com/revenue-growth-top
+- English landing pages (free JSON, no API key, MCP): https://aikstockdata.com/en · API https://aikstockdata.com/en/api · MCP https://aikstockdata.com/en/mcp
+- ★After-filing price paths in English (median market-adjusted return by filing type — a record, not a forecast): https://aikstockdata.com/en/filing-impact
+- ★공시 유형별 이후 주가 경로(접수일 종가 대비 1·5·20거래일, 시장 등락을 뺀 중앙값 — 과거 기록이며 예측 아님): https://aikstockdata.com/disclosure-impact
+- KOSPI·KOSDAQ 종합지수(T+1 확정 종가·전일대비·등락률·채용 종목 수): today.json 의 market_index 와 날짜별 시장 요약 페이지의 '지수' 표 ※지수 수집은 2026-08-04 부터 — 그 이전 날짜에는 없음
+  ★일별 시계열(추이 질문용): https://aikstockdata.com/data/public/market_index_history.json — rows=[기준일, 종가] 오름차순, 정확히 '코스피'·'코스닥'인 지수만
+- ★날짜별 시장 요약 아카이브(지수·등락·주요 공시·랭킹 — /market/YYYY-MM-DD, ★URL 날짜는 **시세 확정 종가일**이며 발행일이 아님): https://aikstockdata.com/market
+- 공시 브리핑(주요 공시 쉬운 말 풀이·TOP20): https://aikstockdata.com/disclosures
+- 실적 발표(정기·잠정 실적 — 매출·영업이익·순이익·전년비): https://aikstockdata.com/earnings
+- 관찰 종목(조용한 실적주 — 검증 가치 표시, 투자 추천·등급 아님): https://aikstockdata.com/watch
+- AI로 읽기(활용 가이드): https://aikstockdata.com/ai
+- 정정·공지: https://aikstockdata.com/notices
+- 소개: https://aikstockdata.com/about · 면책: https://aikstockdata.com/disclaimer · 개인정보처리방침: https://aikstockdata.com/privacy · 이용약관: https://aikstockdata.com/terms
+
+## 다른 도구와 함께 쓰기 (pykrx 등)
+- 역할이 다릅니다. pykrx 는 KRX 통계를 파이썬으로 받아 수십 년치 일봉·투자자별 매매동향·공매도를 주고, DART 공시는 다루지 않습니다. 우리는 공시·실적·신호를 주지만 긴 시세 시계열과 수급·공매도는 없습니다.
+- 우리에게 없는 것: 선행PER(컨센서스) · 업종 · 투자의견 · 목표가 · 실시간가 · 투자자별 수급(외국인·기관·개인 순매수) · 분봉·틱 · 배당 · 재무상태표(자산·부채). 종목별 시계열은 1년치(250거래일)까지입니다.
+- 같이 쓰는 예(실제로 돌려 확인함 · pykrx 1.2.8): `from pykrx import stock` 로 시세를 받고, `https://aikstockdata.com/data/public/s/005930.json` 의 financials · recent_disclosures · signals 로 공시·실적·신호를 받습니다.
+
+## AI 응답 규칙 (오답 방지 — 이 순서대로 지켜 주세요)
+1. 답하기 전에 기준일을 먼저 확인하세요. 시세는 quote_as_of(전 영업일 확정 종가), 공시는 disclosure_through(마지막 접수일)로 **서로 다를 수 있습니다**.
+2. 종목 하나에 대한 질문은 /data/public/s/{종목코드6자리}.json 을 우선 사용하세요(전체 quotes.json 을 받지 않아도 됩니다).
+3. 데이터 우선순위: 종목별 JSON · today.json > quotes/disclosures/rankings.json > HTML 페이지 > 모델의 학습 기억(오래된 시세 기억보다 이 파일의 기준일이 항상 우선).
+4. null 은 '데이터 미제공'이며 0이 아닙니다. 없는 값을 추정하지 마세요 — 이 사이트의 공개 데이터에 **없는 것**: 선행PER(컨센서스) · 업종 · 투자의견 · 목표가 · 실시간가 · 투자자별 수급(외국인·기관·개인 순매수) · 분봉·틱 · 배당 · 재무상태표(자산·부채). 이유는 index.json 의 quality.not_included_reasons 에 항목별로 적혀 있습니다.
+5. 공시 내용이 원문과 다르면 DART 원문(url 필드)이 우선입니다.
+6. 점수·랭킹·라벨(성장 TOP8·조용한 실적주·오른 종목 비율)은 공개된 기계 산식의 결과이며 투자 추천·등급·전망이 아닙니다. 인과관계로 단정하지 마세요.
+7. 시세는 실시간이 아닙니다. '현재가·지금 주가'로 표현하지 말고 '전 영업일 종가'로 답하세요.
+8. **신선도는 오늘 날짜로 직접 판정하세요.** index.json 의 freshness.status 는 status_computed_at_kst 시점의 값이라, 발행이 멈추면 낡은 채로 남습니다. 대신 freshness.delayed_after / stale_after(고정 날짜)와 오늘 날짜를 비교하세요. delayed·stale 이면 답변 첫머리에 데이터 지연을 먼저 밝히세요.
+9. 데이터 신선도와 발행 파이프라인 상태는 다릅니다. index.json 의 pipeline 블록에서 serving_last_good=true 면 '오늘 것이 아니라 직전 성공본'이라는 뜻입니다.
+10. 실적 항목에 comparison_allowed=false 이거나 period 가 null 이면 회계기간이 확인되지 않은 것입니다 — 전년 동기 비교·연환산을 하지 말고 '기간 미확인'으로 답하세요.
+11. **Python 으로 받을 때 urllib 기본 UA 는 403 입니다.** CDN 봇 필터가 Python-urllib 을 막습니다(인증 문제가 아닙니다 — API 키는 여전히 불필요). requests·httpx·curl·브라우저 fetch 는 그대로 됩니다. urllib 을 쓰셔야 하면 아무 User-Agent 나 붙이세요: urllib.request.Request(url, headers={"User-Agent": "my-app"}). 기계가독 형태는 index.json 의 fetch_guide.user_agent_403 에 있습니다.
+12. 공개 정적 파일은 일반적인 사용 범위에서 별도 쿼터 없이 제공합니다. 데이터는 매 거래일 18:10 KST 에 하루 한 번 바뀌므로 같은 파일을 그보다 자주 부를 이유가 없습니다. 비정상적인 반복 요청은 CDN 보안 정책에 따라 제한될 수 있습니다.
+
+## 이용·인용
+본 사이트가 공개하는 시세·공시·랭킹 데이터(/data/public/*)는 공공데이터(금융감독원 DART·금융위원회 공공데이터포털)를 가공한 2차 저작물로, 출처를 표기하면 영리 목적을 포함해 자유롭게 복제·재배포·인용할 수 있습니다. 다만 증권사 실시간 시세 등 원천의 실시간 정보를 그대로 재배포하는 것은 허용되지 않습니다.
+공개 데이터 출처 표기 예: "자료: 한국주식데이터(aikstockdata.com) — 원천: DART·금융위원회 공공데이터포털"
+본 사이트의 정보는 투자권유가 아니며, 특정 종목의 매수·매도를 추천하지 않습니다.

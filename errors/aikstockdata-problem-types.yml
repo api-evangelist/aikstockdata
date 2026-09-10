@@ -1,0 +1,10 @@
+generated: '2026-09-10'
+method: derived
+source: openapi/aikstockdata-openapi.json 4xx responses
+format: plain
+note: Responses are not RFC 9457 problem+json; the OpenAPI declares only a bare 404 on parameterized paths. Static-file 404s are served by the CDN.
+problem_types:
+- status: 404
+  title: 없는 종목코드/날짜 (Unknown stock code or date)
+  when: A per-stock file /data/public/s/{code}.json or a dated archive /data/public/daily/today_{date}.json does not exist for the requested 6-digit code or date.
+  remediation: Resolve valid codes from search_index_min.json / search_index_rows.json and valid archive dates from index.json daily_archive before requesting.

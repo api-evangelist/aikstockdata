@@ -1,0 +1,15 @@
+generated: '2026-09-10'
+method: searched
+source: https://aikstockdata.com/ai + license (aiksd-public-1.0) + OpenAPI description
+plan_count: 1
+currency: null
+plans:
+- name: Public (free)
+  price: 0
+  currency: KRW
+  billing_period: none
+  quota: unlimited (fair use)
+  overage: null
+  limits: No API key, no signup, no rate limit. All /data/public/* datasets, the OpenAPI, the hosted MCP server and llms.txt are free.
+  license: aiksd-public-1.0 — public-data derivative; free reuse incl. commercial with attribution; redistribution of raw real-time broker quotes not permitted.
+note: Single free, keyless tier. No paid plans, no pricing page — the service is free open data by design.

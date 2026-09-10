@@ -1,0 +1,9 @@
+generated: '2026-09-10'
+method: searched
+source: https://aikstockdata.com/data/public/notices.json (schema_version 1.2) + /notices
+scheme: datestamp snapshot
+current_version: 20260910-181041
+human_url: https://aikstockdata.com/notices
+machine_url: https://aikstockdata.com/data/public/notices.json
+note: 'Machine-readable corrections/notice log: pipeline exceptions, validation-gate results, and value corrections (구분=정정 marks a change to a value users already received). Also see new_since_yesterday.json for the per-run diff. Recent pipeline failure dates surfaced in index.json.pipeline.recent_failure_dates.'
+entries: []

@@ -1,0 +1,25 @@
+generated: '2026-09-10'
+method: derived
+source: openapi/aikstockdata-openapi.json + json-schema/*.schema.json + /.well-known/api-catalog
+conformance:
+- id: openapi-3.1
+  conforms: true
+  evidence: 'openapi/aikstockdata-openapi.json (openapi: 3.1.0)'
+- id: json-schema-2020-12
+  conforms: true
+  evidence: 'json-schema/aikstockdata-*.schema.json ($schema: draft 2020-12), referenced from each dataset and from OpenAPI response schemas'
+- id: rfc9727-api-catalog
+  conforms: true
+  evidence: /.well-known/api-catalog served as an RFC 9727 linkset (well-known/aikstockdata-api-catalog.json)
+- id: rfc9457-problem-json
+  conforms: false
+  evidence: 404 responses are plain descriptions, not application/problem+json
+- id: oauth2
+  conforms: false
+  evidence: no securitySchemes; unauthenticated public API
+- id: pagination
+  conforms: false
+  evidence: whole-file datasets; no page/cursor params (slim/min/top-N variants instead)
+domain_standard:
+  declared: false
+  note: Korean public-data derivative (DART / FSC open data). No formal machine contract standard (no OpenRTB/FIX/ISO-20022 etc.) applies to this equities open-data surface; reward-only, none asserted.
