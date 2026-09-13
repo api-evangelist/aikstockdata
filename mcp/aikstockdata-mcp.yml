@@ -2,37 +2,63 @@ generated: '2026-09-10'
 method: probed
 source: https://mcp.aikstockdata.com/mcp (tools/list, HTTP 200)
 server_name: 한국주식데이터 (aikstockdata)
-description: 'Hosted MCP server for Korean equities: T+1 confirmed closes, DART disclosures, quarterly earnings, rankings and screening. Free, keyless, no session header, CORS open.'
+description: 'Hosted MCP server for Korean equities: T+1 confirmed closes, DART disclosures, quarterly
+  earnings, rankings and screening. Free, keyless, no session header, CORS open.'
 deployment:
   mode: remote
   endpoint: https://mcp.aikstockdata.com/mcp
   auth: none
   transport: streamable-http
   verified: probed
+  probe_prior: (never probed)
+  probe: live
+  probe_why: live
+  checked: '2026-09-11'
+  source: claimed-backlog re-probe 2026-09-11
 tool_count: 12
 tools:
 - name: get_today
   title: 오늘의 시장 요약 (Today's market digest)
-  description: 'Start here for "how was the Korean market today?" — index levels, breadth, 52-week high/low counts, top-3 disclosures, growth top-3, movers and disclosure-type counts in one call. Then drill down with get_stock / list_stocks / get_disclosures. Coverage: top-by-market-cap universe (see coverage in index.json), not the full listing. | "오늘 시장 어땠어?"의 출발점 — 지수·등락 폭·주요 공시·성장 랭킹·등락률 상하위를 한 번에. 이어서 get_stock / list_stocks / get_disclosures 로 파고들면 됩니다.'
+  description: 'Start here for "how was the Korean market today?" — index levels, breadth, 52-week high/low
+    counts, top-3 disclosures, growth top-3, movers and disclosure-type counts in one call. Then drill
+    down with get_stock / list_stocks / get_disclosures. Coverage: top-by-market-cap universe (see coverage
+    in index.json), not the full listing. | "오늘 시장 어땠어?"의 출발점 — 지수·등락 폭·주요 공시·성장 랭킹·등락률 상하위를 한 번에. 이어서
+    get_stock / list_stocks / get_disclosures 로 파고들면 됩니다.'
   input: []
   required: []
 - name: search_stock
   title: 종목 검색 (Search stocks)
-  description: Find a ticker from part of the name — Korean or Latin, case-insensitive — or a 6-digit code, within the market-cap-ranked universe (ETFs included). Korean readings of Latin names also match ('네이버' finds NAVER, '케이티' finds KT/KTis). Romanised Korean does not ('samsung' returns nothing; '삼성' works). Up to 10 matches, market-cap sorted. | 이름 일부(한글·영문 모두, 대소문자 무시)나 6자리 코드로 찾습니다. 영문 이름의 한글 읽기도 매치됩니다('네이버'→NAVER, '케이티'→KT·KTis). 다만 한국어의 로마자 표기는 안 됩니다('samsung' 0건, '삼성' 14건). 시총 상위 유니버스 · 시총순 최대 10건.
+  description: Find a ticker from part of the name — Korean or Latin, case-insensitive — or a 6-digit
+    code, within the market-cap-ranked universe (ETFs included). Korean readings of Latin names also match
+    ('네이버' finds NAVER, '케이티' finds KT/KTis). Romanised Korean does not ('samsung' returns nothing; '삼성'
+    works). Up to 10 matches, market-cap sorted. | 이름 일부(한글·영문 모두, 대소문자 무시)나 6자리 코드로 찾습니다. 영문 이름의 한글 읽기도
+    매치됩니다('네이버'→NAVER, '케이티'→KT·KTis). 다만 한국어의 로마자 표기는 안 됩니다('samsung' 0건, '삼성' 14건). 시총 상위 유니버스 · 시총순
+    최대 10건.
   input:
   - query
   required:
   - query
 - name: get_stock
   title: 종목 상세 (Stock detail)
-  description: 'One Korean stock by 6-digit code: T+1 confirmed close & change, market cap, latest quarterly financials (revenue / operating income / net income, with YoY), and ranking signals. Two as-of dates move independently — price (quote_as_of) and filings (disclosure_through); the response header carries both, do not merge them into one "today". null means not provided, never 0. Name → code: search_stock. 250 trading days of prices: get_history. Filings with receipt times: get_disclosures. Screening a list: list_stocks. | 6자리 코드로 한 종목 — 확정 종가·등락·시총·최근 분기 실적(전년비)·랭킹 신호. 기준일이 둘이고 따로 움직입니다(시세·공시) — 응답 머리말에 둘 다 실리니 하나로 합치지 마세요. null 은 ''미제공''이며 0이 아닙니다. 이름으로 찾기는 search_stock, 1년 시세는 get_history, 접수 시각이 있는 공시는 get_disclosures, 조건 목록은 list_stocks.'
+  description: 'One Korean stock by 6-digit code: T+1 confirmed close & change, market cap, latest quarterly
+    financials (revenue / operating income / net income, with YoY), and ranking signals. Two as-of dates
+    move independently — price (quote_as_of) and filings (disclosure_through); the response header carries
+    both, do not merge them into one "today". null means not provided, never 0. Name → code: search_stock.
+    250 trading days of prices: get_history. Filings with receipt times: get_disclosures. Screening a
+    list: list_stocks. | 6자리 코드로 한 종목 — 확정 종가·등락·시총·최근 분기 실적(전년비)·랭킹 신호. 기준일이 둘이고 따로 움직입니다(시세·공시) — 응답
+    머리말에 둘 다 실리니 하나로 합치지 마세요. null 은 ''미제공''이며 0이 아닙니다. 이름으로 찾기는 search_stock, 1년 시세는 get_history, 접수
+    시각이 있는 공시는 get_disclosures, 조건 목록은 list_stocks.'
   input:
   - code
   required:
   - code
 - name: get_rankings
   title: 랭킹 조회 (Rankings)
-  description: Answers "which stocks scored highest on measured DART financials?" — kind='growth' is 성장 TOP8 (max 8 rows), kind='quiet' is 조용한 실적주. Scores come from a published formula over ACTUAL filed financials only — no prices, no analyst estimates. Mechanical, not stock picks. For 52-week high/low or turnaround LISTS use list_stocks(). | "실측 재무로 점수가 높은 종목"에 답합니다 — growth 는 최대 8건, quiet 는 조용한 실적주. 시세·전망치를 쓰지 않고 DART 실측 재무만 씁니다. 52주 신고저·흑자전환 목록은 list_stocks().
+  description: Answers "which stocks scored highest on measured DART financials?" — kind='growth' is 성장
+    TOP8 (max 8 rows), kind='quiet' is 조용한 실적주. Scores come from a published formula over ACTUAL filed
+    financials only — no prices, no analyst estimates. Mechanical, not stock picks. For 52-week high/low
+    or turnaround LISTS use list_stocks(). | "실측 재무로 점수가 높은 종목"에 답합니다 — growth 는 최대 8건, quiet 는 조용한 실적주.
+    시세·전망치를 쓰지 않고 DART 실측 재무만 씁니다. 52주 신고저·흑자전환 목록은 list_stocks().
   input:
   - kind
   - limit
@@ -40,24 +66,42 @@ tools:
   - kind
 - name: get_market_summary
   title: 지수·등락 폭 (Index & breadth)
-  description: Index levels (KOSPI/KOSDAQ close, change, %) and up/down breadth — nothing else. Prices are the previous session's T+1 settled close, never real-time. Index and breadth routinely disagree — the index is cap-weighted, breadth is one vote per stock — which is why both are returned; do not infer one from the other. For the full daily digest (disclosures, rankings, movers) use get_today(). | 지수와 등락 폭만 봅니다. 하루 전체 요약은 get_today(), 조건별 종목 목록은 list_stocks().
+  description: Index levels (KOSPI/KOSDAQ close, change, %) and up/down breadth — nothing else. Prices
+    are the previous session's T+1 settled close, never real-time. Index and breadth routinely disagree
+    — the index is cap-weighted, breadth is one vote per stock — which is why both are returned; do not
+    infer one from the other. For the full daily digest (disclosures, rankings, movers) use get_today().
+    | 지수와 등락 폭만 봅니다. 하루 전체 요약은 get_today(), 조건별 종목 목록은 list_stocks().
   input: []
   required: []
 - name: get_data_urls
   title: 공개 데이터 URL (Open data URLs)
-  description: 'Direct URLs for every public dataset (JSON/CSV) — no signup, no API key. Call this BEFORE concluding something is unavailable: the tool list is not the extent of the data. Returns the endpoint catalog (quotes, disclosures, rankings, per-stock JSON, search index) plus the 30-trading-day dated archive with the exact dates held per pattern. Most AI fetch tools cut responses near 150 KB and a truncated JSON is unparseable — the catalog names a smaller alternative for every large file, so read that instead of guessing. | 전체 공개 데이터(JSON·CSV) 직링크 카탈로그 — 무가입·무키. **없다고 결론내기 전에 먼저 부르세요**: 도구 목록이 데이터의 전부가 아닙니다. 최근 30영업일 날짜별 아카이브(패턴별 보유 날짜 포함)도 함께 냅니다. 대부분의 AI 가 응답을 150KB 안팎에서 자르고 잘린 JSON 은 파싱되지 않습니다 — 큰 파일마다 소형 대체본이 카탈로그에 적혀 있으니 그쪽을 쓰세요.'
+  description: 'Direct URLs for every public dataset (JSON/CSV) — no signup, no API key. Call this BEFORE
+    concluding something is unavailable: the tool list is not the extent of the data. Returns the endpoint
+    catalog (quotes, disclosures, rankings, per-stock JSON, search index) plus the 30-trading-day dated
+    archive with the exact dates held per pattern. Most AI fetch tools cut responses near 150 KB and a
+    truncated JSON is unparseable — the catalog names a smaller alternative for every large file, so read
+    that instead of guessing. | 전체 공개 데이터(JSON·CSV) 직링크 카탈로그 — 무가입·무키. **없다고 결론내기 전에 먼저 부르세요**: 도구 목록이
+    데이터의 전부가 아닙니다. 최근 30영업일 날짜별 아카이브(패턴별 보유 날짜 포함)도 함께 냅니다. 대부분의 AI 가 응답을 150KB 안팎에서 자르고 잘린 JSON 은 파싱되지
+    않습니다 — 큰 파일마다 소형 대체본이 카탈로그에 적혀 있으니 그쪽을 쓰세요.'
   input: []
   required: []
 - name: get_earnings
   title: 잠정·정기 실적 (Quarterly earnings, incl. preliminary)
-  description: Quarterly earnings from DART, INCLUDING preliminary (잠정) results filed ~2 weeks before the regular report. Pass a code for one stock's history, or omit it for the largest caps. get_stock returns the REGULAR report only — use this for the newest numbers. | DART 분기 실적 — 정기보고서보다 2주 빠른 잠정실적 포함. code 를 주면 그 종목 이력, 생략하면 시총 상위. get_stock 은 정기보고서만 주므로 최신 수치는 이 도구로 보세요.
+  description: Quarterly earnings from DART, INCLUDING preliminary (잠정) results filed ~2 weeks before
+    the regular report. Pass a code for one stock's history, or omit it for the largest caps. get_stock
+    returns the REGULAR report only — use this for the newest numbers. | DART 분기 실적 — 정기보고서보다 2주 빠른 잠정실적
+    포함. code 를 주면 그 종목 이력, 생략하면 시총 상위. get_stock 은 정기보고서만 주므로 최신 수치는 이 도구로 보세요.
   input:
   - code
   - limit
   required: []
 - name: get_history
   title: 종목 일별 시세 1년 (Daily price history)
-  description: Answers "is this stock near its high or deep in a drawdown, and is volume unusual?" — 250 trading days of daily CLOSES, plus period high/low, drawdown from the high, and volume vs the 60-day average. Close-based (the upstream feed has no intraday high/low), so it will differ from an HTS 52-week range. | "고점 대비 얼마나 빠졌나·거래량이 평소보다 많나"에 답합니다 — 250거래일 **종가 기준** 고저·낙폭·거래량 배수. 장중 고저가 아니라 HTS 52주 범위와 다를 수 있습니다.
+  description: Answers "is this stock near its high or deep in a drawdown, and is volume unusual?" — 250
+    trading days of daily CLOSES, plus period high/low, drawdown from the high, and volume vs the 60-day
+    average. Close-based (the upstream feed has no intraday high/low), so it will differ from an HTS 52-week
+    range. | "고점 대비 얼마나 빠졌나·거래량이 평소보다 많나"에 답합니다 — 250거래일 **종가 기준** 고저·낙폭·거래량 배수. 장중 고저가 아니라 HTS 52주 범위와
+    다를 수 있습니다.
   input:
   - code
   - days
@@ -65,20 +109,33 @@ tools:
   - code
 - name: get_disclosure_impact
   title: 공시 유형별 이후 주가 (Post-filing price path)
-  description: 'Answers "what usually happened after this kind of filing?" — median MARKET-ADJUSTED return at +1/+5 trading days per DART filing type, with 95% intervals, sample window and n. A historical record, not a forecast. Not available from other free Korean sources. Coverage: top-by-market-cap universe (see coverage in index.json), not the full listing. | "이 공시 나오면 보통 어땠나"에 답합니다 — 공시 유형별로 접수 이후 1·5거래일 뒤까지 시장 등락을 뺀 수익률 중앙값·95% 구간·표본기간. 과거 기록이며 예측·추천이 아닙니다.'
+  description: 'Answers "what usually happened after this kind of filing?" — median MARKET-ADJUSTED return
+    at +1/+5 trading days per DART filing type, with 95% intervals, sample window and n. A historical
+    record, not a forecast. Not available from other free Korean sources. Coverage: top-by-market-cap
+    universe (see coverage in index.json), not the full listing. | "이 공시 나오면 보통 어땠나"에 답합니다 — 공시 유형별로 접수
+    이후 1·5거래일 뒤까지 시장 등락을 뺀 수익률 중앙값·95% 구간·표본기간. 과거 기록이며 예측·추천이 아닙니다.'
   input:
   - label
   required: []
 - name: get_earnings_calendar
   title: 실적 캘린더 (Earnings calendar & new filings)
-  description: 'Answers "who has filed this quarter''s results, who hasn''t, and what came in since last time?" — filed / not-yet lists against the statutory deadline, plus a diff of filings new since the previous publish. Built for stateless agents: polling this replaces a webhook. | "누가 냈고 누가 아직인가 · 지난번 이후 새로 뜬 건 뭔가"에 답합니다. 법정 마감 D-day 와 직전 발행 대비 신규 목록까지. 상태를 못 들고 다니는 에이전트를 위한 도구입니다.'
+  description: 'Answers "who has filed this quarter''s results, who hasn''t, and what came in since last
+    time?" — filed / not-yet lists against the statutory deadline, plus a diff of filings new since the
+    previous publish. Built for stateless agents: polling this replaces a webhook. | "누가 냈고 누가 아직인가 ·
+    지난번 이후 새로 뜬 건 뭔가"에 답합니다. 법정 마감 D-day 와 직전 발행 대비 신규 목록까지. 상태를 못 들고 다니는 에이전트를 위한 도구입니다.'
   input:
   - view
   - limit
   required: []
 - name: get_disclosures
   title: 공시 목록 (Disclosures with receipt times)
-  description: Answers "what was filed, and when exactly?" — DART filings with RECEIPT TIME (HH:MM) and session (pre-open / intraday / after-close), filterable by date, type and importance. The receipt time is not exposed by any public Korean API. Roughly 40% of filings arrive AFTER the close, so that day's price move is not a reaction to them. date=today serves the 15:00 intraday collection (no importance scores yet); any other date serves the ranked list of the last 7 days. | "무슨 공시가 몇 시에 났나"에 답합니다 — 접수 시각(HH:MM)과 장 구분까지. 공개 API 어디에도 없는 값입니다. 날짜·유형·중요도로 거를 수 있습니다. 접수분의 **40% 안팎이 장 마감 후**라 그날 등락은 그 공시의 반응이 아닙니다. date=오늘이면 15:00 장중 수집본(아직 중요도 점수 없음), 다른 날짜면 최근 7일 상위 목록입니다.
+  description: Answers "what was filed, and when exactly?" — DART filings with RECEIPT TIME (HH:MM) and
+    session (pre-open / intraday / after-close), filterable by date, type and importance. The receipt
+    time is not exposed by any public Korean API. Roughly 40% of filings arrive AFTER the close, so that
+    day's price move is not a reaction to them. date=today serves the 15:00 intraday collection (no importance
+    scores yet); any other date serves the ranked list of the last 7 days. | "무슨 공시가 몇 시에 났나"에 답합니다 —
+    접수 시각(HH:MM)과 장 구분까지. 공개 API 어디에도 없는 값입니다. 날짜·유형·중요도로 거를 수 있습니다. 접수분의 **40% 안팎이 장 마감 후**라 그날 등락은 그
+    공시의 반응이 아닙니다. date=오늘이면 15:00 장중 수집본(아직 중요도 점수 없음), 다른 날짜면 최근 7일 상위 목록입니다.
   input:
   - date
   - session
@@ -88,7 +145,10 @@ tools:
   required: []
 - name: list_stocks
   title: 조건으로 종목 목록 (Screen stocks by condition)
-  description: Return the LIST of stocks matching a condition — turnaround to profit, 52-week high/low, growth or quiet-performer rankings — with optional market-cap range and a cap-to-operating-income multiple ceiling. Other tools give counts; this one gives the names. | 조건에 맞는 종목 목록을 돌려줍니다 — 흑자전환·52주 신고저·성장/조용한 실적주. 시총 범위와 시총÷연환산영업이익 배수 상한도 걸 수 있습니다. 다른 도구가 개수를 준다면 이건 목록을 줍니다.
+  description: Return the LIST of stocks matching a condition — turnaround to profit, 52-week high/low,
+    growth or quiet-performer rankings — with optional market-cap range and a cap-to-operating-income
+    multiple ceiling. Other tools give counts; this one gives the names. | 조건에 맞는 종목 목록을 돌려줍니다 — 흑자전환·52주
+    신고저·성장/조용한 실적주. 시총 범위와 시총÷연환산영업이익 배수 상한도 걸 수 있습니다. 다른 도구가 개수를 준다면 이건 목록을 줍니다.
   input:
   - filter
   - max_multiple
