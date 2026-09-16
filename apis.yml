@@ -5,6 +5,20 @@ created: '2026-09-10'
 modified: '2026-09-10'
 specificationVersion: '0.21'
 tags:
+- Korea
+- Stock Market
+- Financial Data
+- Open Data
+- Dart
+- kospi
+- kosdaq
+- konex
+- Filings
+- Equities
+- MCP
+- llms-txt
+- OpenAPI
+tags_raw:
 - korea
 - stock-market
 - financial-data
@@ -19,39 +33,24 @@ tags:
 - llms-txt
 - openapi
 apis:
-- name: 한국주식데이터 공개 데이터 API
-  description: A set of ~37 static JSON/CSV endpoints under /data/public/ covering daily market digest, T+1 quotes, disclosures, rankings, screening, earnings, per-stock data and history, plus dated archives. Documented via OpenAPI 3.1 with no authentication.
+- aid: aikstockdata:aikstockdata-data-api
+  name: 한국주식데이터 (aikstockdata) Data API
+  description: The Data API from 한국주식데이터 (aikstockdata) — 37 operation(s) for data.
   humanURL: https://aikstockdata.com/ai
   baseURL: https://aikstockdata.com/data/public
   tags:
-  - korea
-  - stock-market
-  - financial-data
-  - open-data
-  - dart
-  - kospi
-  - kosdaq
-  - konex
-  - filings
-  - equities
-  - mcp
-  - llms-txt
-  - openapi
+  - Data
   properties:
   - type: OpenAPI
-    url: https://aikstockdata.com/openapi.json
+    url: openapi/aikstockdata-data-api-openapi.yml
   - type: Documentation
     url: https://aikstockdata.com/ai
   - type: LLMsTxt
     url: https://aikstockdata.com/llms.txt
-  - type: MCPServer
-    url: https://mcp.aikstockdata.com/mcp
   - type: JSONSchema
     url: json-schema/aikstockdata-today.schema.json
   - type: ToolCrosswalk
     url: mcp/aikstockdata-tool-crosswalk.yml
-  - type: Overlay
-    url: overlays/aikstockdata-openapi-overlay.yaml
   - type: DataModel
     url: data-model/aikstockdata-data-model.yml
   - type: ErrorCatalog
@@ -68,11 +67,14 @@ apis:
     url: https://aikstockdata.com/openapi.json
   - type: GettingStarted
     url: https://aikstockdata.com/ai
-  image: https://aikstockdata.com/og.png
 maintainers:
 - FN: na77tech-creator
   url: https://github.com/na77tech-creator/aikstockdata
 common:
+- type: MCPServer
+  url: https://mcp.aikstockdata.com/mcp
+- type: Overlay
+  url: overlays/aikstockdata-openapi-overlay.yaml
 - type: Website
   url: https://aikstockdata.com/
 - type: DomainSecurity
