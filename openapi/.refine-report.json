@@ -1,0 +1,58 @@
+{
+  "provider": "aikstockdata",
+  "sources": [
+    "_original/aikstockdata-openapi.json"
+  ],
+  "outputs": [
+    "aikstockdata-data-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "aikstockdata-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/dart_receipt_times.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/dart_receipt_times_min.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/disclosures.csv -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/disclosures_intraday.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/disclosures_intraday_min.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/earnings_calendar.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/earnings_calendar_summary.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/market_index_history.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/new_since_yesterday.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/press_owl_filings.csv -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/press_turnaround.csv -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/quotes.csv -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/quotes_en.csv -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/quotes_min.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/screen.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/screen_top300.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/search_index.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/search_index_aliases.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/search_index_rows.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/index.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/today.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/s/{code}.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/s/{code}_history.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/quotes_top300.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/quotes_slim.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/quotes.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/disclosures_top100.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/disclosures.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/rankings.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/earnings.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/earnings_recent60.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/disclosure_impact.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/disclosure_impact_summary.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/search_index_min.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/daily/today_{date}.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/notices.json -> Data",
+    "aikstockdata-openapi.json: tagged paths GET /data/public/excluded.json -> Data",
+    "aikstockdata-openapi.json: declared missing tag: Data",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "aikstockdata-data-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}
