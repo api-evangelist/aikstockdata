@@ -1,9 +1,15 @@
 name: 한국주식데이터 (aikstockdata)
+
 description: An automated Korean equities open-data publisher. Each trading day it compiles DART filings and T+1 (previous-session) closing prices for KOSPI/KOSDAQ/KONEX names and re-publishes them as machine-readable JSON/CSV files, refreshed once per trading day at 18:10 KST. Free, keyless, and unauthenticated, with a REST/static-file API (OpenAPI 3.1), a hosted MCP server, and an llms.txt.
+
 url: https://raw.githubusercontent.com/api-evangelist/aikstockdata/refs/heads/main/apis.yml
+
 created: '2026-09-10'
+
 modified: '2026-09-10'
+
 specificationVersion: '0.21'
+
 tags:
 - South Korea
 - Stock Market
@@ -18,6 +24,7 @@ tags:
 - MCP
 - llms-txt
 - OpenAPI
+
 tags_raw:
 - korea
 - stock-market
@@ -32,6 +39,65 @@ tags_raw:
 - mcp
 - llms-txt
 - openapi
+
+maintainers:
+- FN: na77tech-creator
+  url: https://github.com/na77tech-creator/aikstockdata
+
+image: https://aikstockdata.com/og.png
+
+common:
+- type: ChangeLog
+  url: changelog/aikstockdata-changelog.yml
+- type: AgenticAccess
+  url: agentic-access/aikstockdata-agentic-access.yml
+- type: Spectral
+  url: rules/aikstockdata-rules.yml
+- type: Lifecycle
+  url: lifecycle/aikstockdata-lifecycle.yml
+- type: LLMsTxt
+  url: llms/aikstockdata-llms.txt
+- type: Hosts
+  url: hosts/aikstockdata-hosts.yml
+- type: Vendors
+  url: vendors/aikstockdata-vendors.yml
+- type: Newsroom
+  url: https://aikstockdata.com/press
+- type: MCPServer
+  url: https://mcp.aikstockdata.com/mcp
+- type: Overlay
+  url: overlays/aikstockdata-openapi-overlay.yaml
+- type: Website
+  url: https://aikstockdata.com/
+- type: DomainSecurity
+  url: security/aikstockdata-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: WellKnown
+  url: well-known/aikstockdata-well-known.yml
+- type: APICatalog
+  url: well-known/aikstockdata-api-catalog.json
+- type: StatusPage
+  url: https://aikstockdata.com/status
+- type: ChangeLog
+  url: https://aikstockdata.com/notices
+- type: Conformance
+  url: conformance/aikstockdata-conformance.yml
+- type: DeveloperPortal
+  url: https://aikstockdata.com/ai
+- type: Documentation
+  url: https://aikstockdata.com/ai
+- type: TermsOfService
+  url: https://aikstockdata.com/terms
+- type: PrivacyPolicy
+  url: https://aikstockdata.com/privacy
+- type: GitHubOrganization
+  url: https://github.com/na77tech-creator/aikstockdata
+- type: Blog
+  url: https://aikstockdata.com/feed.xml
+- type: Support
+  url: https://aikstockdata.com/about
+
 apis:
 - aid: aikstockdata:aikstockdata-data-api
   name: 한국주식데이터 (aikstockdata) Data API
@@ -67,57 +133,21 @@ apis:
     url: https://aikstockdata.com/openapi.json
   - type: GettingStarted
     url: https://aikstockdata.com/ai
-maintainers:
-- FN: na77tech-creator
-  url: https://github.com/na77tech-creator/aikstockdata
-common:
-- type: MCPServer
-  url: https://mcp.aikstockdata.com/mcp
-- type: Overlay
-  url: overlays/aikstockdata-openapi-overlay.yaml
-- type: Website
-  url: https://aikstockdata.com/
-- type: DomainSecurity
-  url: security/aikstockdata-domain-security.yml
-- type: AgentSkill
-  url: skills/_index.yml
-- type: WellKnown
-  url: well-known/aikstockdata-well-known.yml
-- type: APICatalog
-  url: well-known/aikstockdata-api-catalog.json
-- type: StatusPage
-  url: https://aikstockdata.com/status
-- type: ChangeLog
-  url: https://aikstockdata.com/notices
-- type: Conformance
-  url: conformance/aikstockdata-conformance.yml
-- type: DeveloperPortal
-  url: https://aikstockdata.com/ai
-- type: Documentation
-  url: https://aikstockdata.com/ai
-- type: TermsOfService
-  url: https://aikstockdata.com/terms
-- type: PrivacyPolicy
-  url: https://aikstockdata.com/privacy
-- type: GitHubOrganization
-  url: https://github.com/na77tech-creator/aikstockdata
-- type: Blog
-  url: https://aikstockdata.com/feed.xml
-- type: Support
-  url: https://aikstockdata.com/about
-image: https://aikstockdata.com/og.png
-x-enrichment:
-  date: '2026-09-10'
-  status: enriched
-  artifacts_added: 31
-  pass: local-v3
+
 x-generated:
   by: apis.io/add
   model: claude-opus-4-8
   confidence: 97
   at: '2026-09-10T00:56:24.696Z'
+
 x-correction-request:
   requested: '2026-10-02'
   source:
   - https://github.com/api-evangelist/aikstockdata/issues/1
   request: 'Issue #1 (na77tech-creator, maintainer of aikstockdata.com), verified live 2026-10-02. (1) LICENCE: /data/public/index.json license block is now id aiksd-public-1.1 (https://aikstockdata.com/licenses/aiksd-public-1.1.txt): non-commercial use with attribution; commercial redistribution is not permitted; market prices also follow the FSC source licence (KOGL Type 4: attribution, no commercial use, no derivatives); DART filings follow DART terms. Drop ''aiksd-public-1.0'' and ''commercial reuse allowed with attribution'' everywhere (PROFILE.md, plans, any licence artifact). (2) WELL-KNOWNS: /.well-known/mcp.json is 200 application/json with content (MCP name, description_en, transport http url); /.well-known/api-catalog is 200 application/linkset+json (service-desc https://aikstockdata.com/openapi.json, service-doc /ai and /llms.txt, service-meta /apis.json). Re-probe both, record them as published, remove ''returned empty and are unverified''. An invented path returns a real 404, so these are not soft-200s. (3) USER-AGENT: a plain python urllib.request.urlopen with no custom header now returns 200 for /data/public/index.json, /.well-known/mcp.json and /.well-known/api-catalog; remove the ''default urllib User-Agent gets 403'' note. Everything else in the profile (free, keyless, prior-session closes not real-time) was confirmed by the provider as still accurate.'
+x-enrichment:
+  date: '2026-10-02'
+  status: enriched
+  artifacts_added: 7
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

@@ -1,14 +1,13 @@
 openapi: 3.2.0
 info:
-  title: 한국주식데이터 공개 데이터 Data API
-  version: '20260910'
-  description: 'KOSPI·KOSDAQ·KONEX 확정 종가(T+1)·DART 공시·실측 분기 실적을 매 거래일 18:10 KST 에 정적 JSON 으로 발행합니다. 인증·API 키 불필요 · 요청 쿼터 없음, CORS 개방. ★시세는 실시간이 아닌 전 영업일 확정 종가입니다. null 은 ''미제공''이며 0 과 다릅니다. 큰 파일은 AI fetch 도구에서 잘릴 수 있으니 150KB 미만 소형판을 우선 쓰세요(안내: index.json 의 fetch_guide). 정보 제공 목적이며 투자 권유가 아닙니다.'
+  title: Aikstockdata Data API
   contact:
     name: 한국주식데이터
     url: https://aikstockdata.com/about
-  license:
-    name: 공공데이터(DART·금융위) 가공물 — 출처 표기 후 자유 이용(영리 포함)
-    url: https://aikstockdata.com/terms
+  x-refined-note:
+  - x-mcp-endpoint differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Data across 2 of this provider''s published API definitions: aikstockdata-openapi.json, aikstockdata-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://aikstockdata.com
 tags:
@@ -31,6 +30,8 @@ paths:
       - Data
       operationId: getDataPublicDartReceiptTimesJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/dart_receipt_times_min.json:
     get:
       summary: 접수 시각 소형판
@@ -48,6 +49,8 @@ paths:
       - Data
       operationId: getDataPublicDartReceiptTimesMinJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/disclosures.csv:
     get:
       summary: 공시 목록(CSV)
@@ -66,6 +69,8 @@ paths:
       - Data
       operationId: getDataPublicDisclosuresCsv
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/disclosures_intraday.json:
     get:
       summary: 장중 공시 목록(15:00 수집)
@@ -83,6 +88,8 @@ paths:
       - Data
       operationId: getDataPublicDisclosuresIntradayJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/disclosures_intraday_min.json:
     get:
       summary: 장중 공시 소형판
@@ -100,6 +107,8 @@ paths:
       - Data
       operationId: getDataPublicDisclosuresIntradayMinJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/earnings_calendar.json:
     get:
       summary: 실적 발표 예정·확정 캘린더
@@ -117,6 +126,8 @@ paths:
       - Data
       operationId: getDataPublicEarningsCalendarJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/earnings_calendar_summary.json:
     get:
       summary: 실적 캘린더 요약
@@ -134,6 +145,8 @@ paths:
       - Data
       operationId: getDataPublicEarningsCalendarSummaryJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/market_index_history.json:
     get:
       summary: market_index_history.json
@@ -151,6 +164,8 @@ paths:
       - Data
       operationId: getDataPublicMarketIndexHistoryJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/new_since_yesterday.json:
     get:
       summary: 어제 이후 새로 들어온 것
@@ -168,6 +183,8 @@ paths:
       - Data
       operationId: getDataPublicNewSinceYesterdayJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/press_owl_filings.csv:
     get:
       summary: 기자용 — 올빼미 공시 통계(CSV)
@@ -186,6 +203,8 @@ paths:
       - Data
       operationId: getDataPublicPressOwlFilingsCsv
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/press_turnaround.csv:
     get:
       summary: 기자용 — 흑자전환 표(CSV)
@@ -204,6 +223,8 @@ paths:
       - Data
       operationId: getDataPublicPressTurnaroundCsv
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/quotes.csv:
     get:
       summary: 전 종목 확정 종가(CSV)
@@ -222,6 +243,8 @@ paths:
       - Data
       operationId: getDataPublicQuotesCsv
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/quotes_en.csv:
     get:
       summary: 전 종목 확정 종가(영문 헤더 CSV)
@@ -240,6 +263,8 @@ paths:
       - Data
       operationId: getDataPublicQuotesEnCsv
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/quotes_min.json:
     get:
       summary: quotes_min.json
@@ -257,6 +282,8 @@ paths:
       - Data
       operationId: getDataPublicQuotesMinJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/screen.json:
     get:
       summary: 조건 검색용 전 종목 지표
@@ -274,6 +301,8 @@ paths:
       - Data
       operationId: getDataPublicScreenJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/screen_top300.json:
     get:
       summary: 조건 검색 소형판(상위 300)
@@ -291,6 +320,8 @@ paths:
       - Data
       operationId: getDataPublicScreenTop300Json
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/search_index.json:
     get:
       summary: 종목 검색 인덱스(전체)
@@ -308,6 +339,8 @@ paths:
       - Data
       operationId: getDataPublicSearchIndexJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/search_index_aliases.json:
     get:
       summary: search_index_aliases.json
@@ -325,6 +358,8 @@ paths:
       - Data
       operationId: getDataPublicSearchIndexAliasesJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/search_index_rows.json:
     get:
       summary: search_index_rows.json
@@ -342,6 +377,8 @@ paths:
       - Data
       operationId: getDataPublicSearchIndexRowsJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/index.json:
     get:
       summary: 전체 카탈로그(여기서 시작)
@@ -359,6 +396,8 @@ paths:
       - Data
       operationId: getDataPublicIndexJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/today.json:
     get:
       summary: 오늘의 시장 다이제스트
@@ -376,6 +415,8 @@ paths:
       - Data
       operationId: getDataPublicTodayJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/s/{code}.json:
     get:
       summary: 종목 상세(소형 ~5KB)
@@ -401,6 +442,8 @@ paths:
       - Data
       operationId: getDataPublicS{code}Json
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/s/{code}_history.json:
     get:
       summary: 종목별 1년 일별 시계열(~7KB)
@@ -426,6 +469,8 @@ paths:
       - Data
       operationId: getDataPublicS{code}HistoryJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/quotes_top300.json:
     get:
       summary: 시가총액 상위 300
@@ -443,6 +488,8 @@ paths:
       - Data
       operationId: getDataPublicQuotesTop300Json
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/quotes_slim.json:
     get:
       summary: 전 종목 경량 시세
@@ -460,6 +507,8 @@ paths:
       - Data
       operationId: getDataPublicQuotesSlimJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/quotes.json:
     get:
       summary: 전 종목 시세 전체판
@@ -477,6 +526,8 @@ paths:
       - Data
       operationId: getDataPublicQuotesJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/disclosures_top100.json:
     get:
       summary: 주요 공시 TOP100(중요도순)
@@ -494,6 +545,8 @@ paths:
       - Data
       operationId: getDataPublicDisclosuresTop100Json
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/disclosures.json:
     get:
       summary: 공시 브리핑 전체
@@ -511,6 +564,8 @@ paths:
       - Data
       operationId: getDataPublicDisclosuresJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/rankings.json:
     get:
       summary: 랭킹
@@ -528,6 +583,8 @@ paths:
       - Data
       operationId: getDataPublicRankingsJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/earnings.json:
     get:
       summary: 어닝 스코어보드
@@ -545,6 +602,8 @@ paths:
       - Data
       operationId: getDataPublicEarningsJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/earnings_recent60.json:
     get:
       summary: 어닝 스코어보드 소형판(시총 상위 80종목 + 최근 70건 · 압축 재무 포함)
@@ -562,6 +621,8 @@ paths:
       - Data
       operationId: getDataPublicEarningsRecent60Json
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/disclosure_impact.json:
     get:
       summary: 공시 유형별 이후 주가 경로
@@ -579,6 +640,8 @@ paths:
       - Data
       operationId: getDataPublicDisclosureImpactJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/disclosure_impact_summary.json:
     get:
       summary: 공시 유형별 이후 주가 경로 소형판
@@ -596,6 +659,8 @@ paths:
       - Data
       operationId: getDataPublicDisclosureImpactSummaryJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/search_index_min.json:
     get:
       summary: 종목 인덱스 경량판(~82KB)
@@ -613,6 +678,8 @@ paths:
       - Data
       operationId: getDataPublicSearchIndexMinJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/daily/today_{date}.json:
     get:
       summary: 날짜별 시장 다이제스트 아카이브
@@ -638,6 +705,8 @@ paths:
       - Data
       operationId: getDataPublicDailyToday{date}Json
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/notices.json:
     get:
       summary: 정정·공지 로그
@@ -655,6 +724,8 @@ paths:
       - Data
       operationId: getDataPublicNoticesJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
   /data/public/excluded.json:
     get:
       summary: 발행 제외 종목
@@ -672,3 +743,49 @@ paths:
       - Data
       operationId: getDataPublicExcludedJson
       x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
+  /data/public/mdd.json:
+    get:
+      summary: mdd.json
+      description: 발행 중인 공개 파일입니다. 설명이 아직 붙지 않았습니다 — 형식은 index.json 의 file_bytes 와 schemas/ 를 참고하세요.
+      responses:
+        '200':
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: 없는 종목코드/날짜
+      tags:
+      - Data
+      operationId: getDataPublicMddJson
+      x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
+  /data/public/pipeline_status.json:
+    get:
+      summary: 발행 실행 마지막 상태
+      description: 마지막 발행 실행의 성패·멈춘 단계·되돌림 결과. 실패한 날에도 직전 발행본 위에 이 파일만 갱신된다 — 사이트가 어제 것인 이유를 여기서 읽는다.
+      responses:
+        '200':
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: 없는 종목코드/날짜
+      tags:
+      - Data
+      operationId: getDataPublicPipelineStatusJson
+      x-operation-id-source: derived
+    servers:
+    - url: https://aikstockdata.com
+externalDocs:
+  description: AI 연동 안내 · MCP 서버(무인증) · llms.txt
+  url: https://aikstockdata.com/ai
+x-refined-from:
+- aikstockdata-openapi.json
+- aikstockdata-openapi.json
