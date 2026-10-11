@@ -18,4 +18,5 @@ deprecation_policy:
   note: No formal deprecation/sunset policy published; no deprecated operations declared in the OpenAPI.
 sla:
   documented: false
+deprecation: {}
 deprecated_operations: []

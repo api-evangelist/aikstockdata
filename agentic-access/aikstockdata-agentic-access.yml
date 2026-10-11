@@ -1,0 +1,384 @@
+generated: '2026-10-02'
+method: generated
+source: openapi/aikstockdata-data-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 37
+  by_action_class:
+    connected: 37
+  by_consequence:
+    read: 37
+  human_in_the_loop_required: 0
+operations:
+- path: /data/public/dart_receipt_times.json
+  method: get
+  operationId: getDataPublicDartReceiptTimesJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/dart_receipt_times_min.json
+  method: get
+  operationId: getDataPublicDartReceiptTimesMinJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/disclosures.csv
+  method: get
+  operationId: getDataPublicDisclosuresCsv
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/disclosures_intraday.json
+  method: get
+  operationId: getDataPublicDisclosuresIntradayJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/disclosures_intraday_min.json
+  method: get
+  operationId: getDataPublicDisclosuresIntradayMinJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/earnings_calendar.json
+  method: get
+  operationId: getDataPublicEarningsCalendarJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/earnings_calendar_summary.json
+  method: get
+  operationId: getDataPublicEarningsCalendarSummaryJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/market_index_history.json
+  method: get
+  operationId: getDataPublicMarketIndexHistoryJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/new_since_yesterday.json
+  method: get
+  operationId: getDataPublicNewSinceYesterdayJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/press_owl_filings.csv
+  method: get
+  operationId: getDataPublicPressOwlFilingsCsv
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/press_turnaround.csv
+  method: get
+  operationId: getDataPublicPressTurnaroundCsv
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/quotes.csv
+  method: get
+  operationId: getDataPublicQuotesCsv
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/quotes_en.csv
+  method: get
+  operationId: getDataPublicQuotesEnCsv
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/quotes_min.json
+  method: get
+  operationId: getDataPublicQuotesMinJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/screen.json
+  method: get
+  operationId: getDataPublicScreenJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/screen_top300.json
+  method: get
+  operationId: getDataPublicScreenTop300Json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/search_index.json
+  method: get
+  operationId: getDataPublicSearchIndexJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/search_index_aliases.json
+  method: get
+  operationId: getDataPublicSearchIndexAliasesJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/search_index_rows.json
+  method: get
+  operationId: getDataPublicSearchIndexRowsJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/index.json
+  method: get
+  operationId: getDataPublicIndexJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/today.json
+  method: get
+  operationId: getDataPublicTodayJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/s/{code}.json
+  method: get
+  operationId: getDataPublicS{code}Json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/s/{code}_history.json
+  method: get
+  operationId: getDataPublicS{code}HistoryJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/quotes_top300.json
+  method: get
+  operationId: getDataPublicQuotesTop300Json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/quotes_slim.json
+  method: get
+  operationId: getDataPublicQuotesSlimJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/quotes.json
+  method: get
+  operationId: getDataPublicQuotesJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/disclosures_top100.json
+  method: get
+  operationId: getDataPublicDisclosuresTop100Json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/disclosures.json
+  method: get
+  operationId: getDataPublicDisclosuresJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/rankings.json
+  method: get
+  operationId: getDataPublicRankingsJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/earnings.json
+  method: get
+  operationId: getDataPublicEarningsJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/earnings_recent60.json
+  method: get
+  operationId: getDataPublicEarningsRecent60Json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/disclosure_impact.json
+  method: get
+  operationId: getDataPublicDisclosureImpactJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/disclosure_impact_summary.json
+  method: get
+  operationId: getDataPublicDisclosureImpactSummaryJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/search_index_min.json
+  method: get
+  operationId: getDataPublicSearchIndexMinJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/daily/today_{date}.json
+  method: get
+  operationId: getDataPublicDailyToday{date}Json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/notices.json
+  method: get
+  operationId: getDataPublicNoticesJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/public/excluded.json
+  method: get
+  operationId: getDataPublicExcludedJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

@@ -22,4 +22,21 @@ conformance:
   evidence: whole-file datasets; no page/cursor params (slim/min/top-N variants instead)
 domain_standard:
   declared: false
-  note: Korean public-data derivative (DART / FSC open data). No formal machine contract standard (no OpenRTB/FIX/ISO-20022 etc.) applies to this equities open-data surface; reward-only, none asserted.
+  note: Korean public-data derivative (DART / FSC open data). No formal machine contract standard (no OpenRTB/FIX/ISO-20022 etc.) applies to this
+    equities open-data surface; reward-only, none asserted.
+standards:
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: oauth2
+  conforms: false
+  evidence: no securitySchemes declared
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+- id: openapi-3.1
+  conforms: true
+  evidence: the document declares 3.1.0

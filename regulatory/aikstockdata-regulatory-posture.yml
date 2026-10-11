@@ -1,0 +1,40 @@
+generated: '2026-10-02'
+method: probed
+source: https://aikstockdata.com/privacy
+signals:
+  data_retention:
+    note: Retention periods for user data and IP keys.
+    evidence:
+      - source: https://aikstockdata.com/privacy
+        http_status: 200
+        fetched: "true"
+        quote: "글·댓글(함께 저장된 IP 포함)은 작성자가 비밀번호로 직접 삭제하거나 관리자가 삭제할 때까지 보유하며, 삭제 시 즉시 파기됩니다."
+      - source: https://aikstockdata.com/privacy
+        http_status: 200
+        fetched: "true"
+        quote: "방문 집계·속도 제한용 IP 키는 위에 적은 기간(1시간~1년)이 지나면 자동 파기됩니다."
+  data_subject_request:
+    note: Users can delete their own posts/comments via password.
+    evidence:
+      - source: https://aikstockdata.com/privacy
+        http_status: 200
+        fetched: "true"
+        quote: "글·댓글(함께 저장된 IP 포함)은 작성자가 비밀번호로 직접 삭제하거나 관리자가 삭제할 때까지 보유하며, 삭제 시 즉시 파기됩니다."
+  subprocessors:
+    note: Uses Cloudflare and Google for hosting and analytics, both outside Korea.
+    evidence:
+      - source: https://aikstockdata.com/privacy
+        http_status: 200
+        fetched: "true"
+        quote: "사이트 호스팅과 데이터 저장은 Cloudflare, Inc.(미국)에 위탁되어 있습니다 — 정적 페이지 제공(Workers), 게시판 데이터베이스(D1), 방문 집계·속도 제한 키 저장(KV)."
+      - source: https://aikstockdata.com/privacy
+        http_status: 200
+        fetched: "true"
+        quote: "방문 통계의 수집·분석은 Google LLC(미국)에 위탁되어 있으며, 이에 따라 방문 기록 통계 정보가 국외(미국 등 Google 서버 소재지)에서 저장·처리됩니다."
+  data_residency:
+    note: Personal data may be stored/processed abroad (US).
+    evidence:
+      - source: https://aikstockdata.com/privacy
+        http_status: 200
+        fetched: "true"
+        quote: "접속 트래픽은 Cloudflare의 글로벌 네트워크를 경유하며, 이에 따라 위 항목의 개인정보가 국외(미국 등 Cloudflare 서버 소재지)에서 저장·처리됩니다."

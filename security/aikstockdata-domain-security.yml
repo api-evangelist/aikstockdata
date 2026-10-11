@@ -1,11 +1,11 @@
-generated: '2026-09-10'
+generated: '2026-10-02'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
 - host: aikstockdata.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Dec  4 08:46:54 2026 GMT
+  cert_expires: Dec 27 06:58:46 2026 GMT
   hsts: true
   hsts_max_age: 300
 domains:
