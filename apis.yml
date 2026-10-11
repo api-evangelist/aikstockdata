@@ -47,6 +47,10 @@ maintainers:
 image: https://aikstockdata.com/og.png
 
 common:
+- type: Plans
+  url: plans/aikstockdata-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/aikstockdata-rate-limits.yml
 - type: ChangeLog
   url: changelog/aikstockdata-changelog.yml
 - type: AgenticAccess

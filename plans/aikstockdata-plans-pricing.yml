@@ -14,3 +14,16 @@ plans:
   limits: No API key, no signup, no rate limit. All /data/public/* datasets, the OpenAPI, the hosted MCP server and llms.txt are free.
   license: aiksd-public-1.1 — non-commercial use with attribution; commercial redistribution not permitted; market prices follow FSC source licence (KOGL Type 4); DART filings follow DART terms.
 note: Single free, keyless tier. No paid plans, no pricing page — the service is free open data by design.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Public (free)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
