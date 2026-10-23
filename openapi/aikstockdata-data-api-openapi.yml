@@ -789,3 +789,9 @@ externalDocs:
 x-refined-from:
 - aikstockdata-openapi.json
 - aikstockdata-openapi.json
+x-provenance:
+  method: harvested
+  publisher: 한국주식데이터 (aikstockdata)
+  source: https://aikstockdata.com/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
