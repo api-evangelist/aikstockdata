@@ -116,7 +116,7 @@ OpenAPI overlays, including conversational phrasing for each operation.
 
 Spectral rulesets for the provider's contracts.
 
-- [Moved to /providers/aikstockdata/](https://apis.io/rules/aikstockdata/aikstockdata-rules/)
+- [한국주식데이터 (aikstockdata) API Rules](https://apis.io/rules/aikstockdata/aikstockdata-rules/)
 
 #### Security (2)
 
@@ -137,6 +137,12 @@ Published request limits.
 
 - [Aikstockdata Rate Limits](https://apis.io/rate-limits/aikstockdata/aikstockdata-rate-limits/)
 
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Aikstockdata Finops](https://apis.io/finops/aikstockdata/aikstockdata-finops/)
+
 ## Where to find this API
 
 Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
@@ -148,7 +154,6 @@ Links to the company's own pages. This repository publishes no copy of their spe
 - [Blog](https://aikstockdata.com/feed.xml)
 - [Terms of service](https://aikstockdata.com/terms)
 - [Privacy policy](https://aikstockdata.com/privacy)
-- [GitHub](https://github.com/na77tech-creator/aikstockdata)
 - [Status](https://aikstockdata.com/status)
 
 ## API Evangelist rating
