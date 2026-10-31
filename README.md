@@ -116,7 +116,7 @@ OpenAPI overlays, including conversational phrasing for each operation.
 
 Spectral rulesets for the provider's contracts.
 
-- [한국주식데이터 (aikstockdata) API Rules](https://apis.io/rules/aikstockdata/aikstockdata-rules/)
+- [Moved to /providers/aikstockdata/](https://apis.io/rules/aikstockdata/aikstockdata-rules/)
 
 #### Security (2)
 
@@ -136,12 +136,6 @@ Published plans, tiers and prices.
 Published request limits.
 
 - [Aikstockdata Rate Limits](https://apis.io/rate-limits/aikstockdata/aikstockdata-rate-limits/)
-
-#### FinOps (1)
-
-What the API costs to run, by operation.
-
-- [Aikstockdata Finops](https://apis.io/finops/aikstockdata/aikstockdata-finops/)
 
 ## Where to find this API
 
